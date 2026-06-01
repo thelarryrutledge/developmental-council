@@ -1,0 +1,9 @@
+# Council run artifacts
+council-report-*.html
+council-transcript-*.md
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
