@@ -1,74 +1,108 @@
 # Developmental Council
 
-A Claude Code / Cowork skill that runs an idea, draft, design, or decision through several independent advisors — each committed to a distinct thinking stance — then organizes what they found into a briefing you act on, **without collapsing to a single verdict**.
+A platform-neutral Agent Skill that runs an idea, draft, design, architecture, strategy, or decision through independent advisor stances, then organizes what they found into a briefing you act on **without collapsing to a single verdict**.
 
-It is built on, and departs from, two prior works (see [Lineage](#lineage)). The departure is the whole point.
+This is a **developmental** council, not a **convergent** one.
 
----
+- A **convergent council** tests an idea and produces a verdict.
+- A **developmental council** strengthens an artifact by surfacing distinct perspectives, preserving tensions, and stopping before synthesis.
 
-## Convergent vs. developmental councils
-
-There are two different things you can do with a council of advisors, and they want opposite back ends.
-
-A **convergent council** tests an idea and **produces a verdict**. It's the right design when the problem has a knowable better answer — which product format to ship, which option to pick, what a passage really means. Peer-ranking and a synthesizing chairman serve that goal well. This is what Karpathy and Lehmann built, and for their problems it works.
-
-A **developmental council** — this skill — **strengthens an artifact** by surfacing distinct perspectives and the tensions between them, then **stops**, leaving the synthesis to you. It's the right design for generative work — writing, architecture, design, strategy — where collapsing five perspectives into one verdict destroys the value, because the disagreements and the gaps *are* the product.
-
-Same spawn-and-collect machinery. Opposite objective function. This repo is not an improvement on the convergent council; it's a **different tool that shares its lineage**, aimed at a different class of problem.
-
----
+The disagreements and gaps are the product. The author decides what to do with them.
 
 ## What it does
 
-1. **Frames** your artifact neutrally and scans the workspace for grounding context (withholding that context from the Outsider seat — see below).
-2. **Convenes** five advisor stances in parallel, each told to lean fully into its angle and to *report what it sees, not rewrite your work*:
-   - **Contrarian** (takes a per-domain skin) — what will fail, what you're avoiding.
-   - **First-Principles** — are you even solving the right problem?
-   - **Expansionist** — upside and adjacent opportunity; what's strong and worth developing.
-   - **Outsider** — reacts with zero context; catches the curse of knowledge.
-   - **Executor** (optional per run) — what actually happens Monday morning.
-3. **Runs a gap pass** — anonymized advisors answer one question: *what did everyone miss?*, with emphasis on connections between responses no single advisor saw.
-4. **Adjudicates** (optional) — organizes everything into converge / clash / gaps, sorts each observation into *merit / mistaken / out-of-scope*, and keeps a separate *strengthening* track. It never merges, ranks, or issues a verdict.
-5. **Outputs** a scannable HTML report and a full markdown transcript.
+1. Frames the artifact neutrally and gathers just enough context to ground the review.
+2. Runs independent advisor passes:
+   - **Contrarian** — what will fail, what is missing, what is being avoided.
+   - **First-Principles** — are we solving the right problem?
+   - **Expansionist** — what is strong, underdeveloped, or bigger than it looks?
+   - **Outsider** — reacts with zero context to catch curse-of-knowledge issues.
+   - **Executor** — optional; what happens Monday morning?
+3. Runs a gap pass over anonymized advisor responses: what did everyone miss?
+4. Optionally adjudicates the feedback into converge / clash / gaps / merit / mistaken / out-of-scope / strengthening.
+5. Produces a scannable briefing and, where supported, an HTML report plus markdown transcript.
 
----
+## Platform compatibility
+
+The core skill is just `SKILL.md` with standard YAML frontmatter and markdown instructions. It is intentionally not tied to Claude, Claude Code, Cowork, Codex, Cursor, Copilot, Gemini CLI, or any one agent runtime.
+
+Different platforms can execute it differently:
+
+- Parallel sub-agents when available.
+- Multiple model calls when available.
+- Isolated sequential passes when parallelism is unavailable.
+- Inline chat-only reports when file output is unavailable.
+- HTML/markdown artifacts when file output is available.
+
+The essential requirement is independence: advisors should not see one another's outputs until the gap pass.
 
 ## Install
 
-1. Download `SKILL.md` from this repo.
-2. In Claude Code or Cowork: **Customize → Skills → Add skill**, and paste the name and description separately, then the body.
-3. Trigger with `council this`, `develop this`, `pressure-test this`, etc., followed by your artifact and as much context as you can give it.
+### Generic Agent Skills layout
 
-Optional: run the adjudication layer only when feedback volume warrants it (it's the last, skippable step).
+Use this directory as the skill folder:
 
----
+```text
+developmental-council/
+  SKILL.md
+  README.md
+  examples/
+  platforms/
+```
+
+The only required file is `SKILL.md`.
+
+### OpenAI Codex / Codex-style skill runners
+
+Place the `developmental-council` folder wherever your runner loads skills from. The required entry point is:
+
+```text
+developmental-council/SKILL.md
+```
+
+### Claude / Claude Code / Cowork
+
+Import or paste the contents of `SKILL.md` as a custom skill. Claude-specific notes are in `platforms/claude.md`.
+
+### Cursor / Copilot / Gemini / other agents
+
+Use `SKILL.md` as a reusable instruction file or custom agent rule. If the platform does not support skill discovery directly, paste the skill body into the agent's custom instructions for the session.
+
+## Trigger phrases
+
+- `council this`
+- `develop this`
+- `pressure-test this`
+- `stress-test this`
+- `run the council`
+- `what am I missing?`
+- `poke holes in this`
+- `how do I make this stronger?`
+
+## Important design choices
+
+| Choice | Why |
+|---|---|
+| No final verdict | Generative work benefits from preserved tensions. |
+| No ranking | Ranking advisor outputs can introduce self-preference bias and collapses developmental value. |
+| Context-starved Outsider | The Outsider only works if it does not inherit insider knowledge. |
+| Audience-blind advisors | Audience context can make advisors self-censor. Only adjudication sees audience/scope. |
+| Report, don't prescribe | The council gives information about the artifact, not a replacement artifact. |
+| No-dismiss-for-comfort guardrail | Valid, in-scope, uncomfortable observations are often the most valuable ones. |
+
+## Examples
+
+See:
+
+- `examples/engineering-preset.md`
+- `examples/life-decision-preset.md`
 
 ## Lineage
 
-- **Andrej Karpathy — LLM Council** (Nov 2025). The original: dispatch a query to multiple models (via OpenRouter), have them peer-review each other anonymously, and a chairman model synthesizes the final answer. Multi-model by design. <https://github.com/karpathy/llm-council>
-- **Ole Lehmann — LLM Council skill for Claude** (early 2026). Rebuilt the council to run entirely inside Claude using sub-agents with distinct *thinking styles* instead of different models, with a five-advisor lineup (Contrarian, First-Principles, Expansionist, Outsider, Executor), anonymized peer review, a chairman verdict, and an HTML report. Article: <https://x.com/itsolelehmann/status/2038661433626333649>
+This skill draws from the broader LLM council pattern: dispatching a prompt through multiple independent perspectives, reviewing the responses, and synthesizing the results. It differs from convergent council designs by removing the final verdict and focusing on developmental feedback.
 
-Credit for the advisor-as-thinking-stance design, the lean-in instruction, the trigger taxonomy, the workspace context scan, and the two-file output goes to Lehmann; credit for the dispatch / anonymous-review / chairman structure goes to Karpathy. Their convergent design is the *right* design for their problems — this skill keeps most of their machinery and changes only what a developmental aim requires.
-
----
-
-## What we changed, and why
-
-| Change | Why |
-|---|---|
-| **Removed the peer-review ranking** ("which response is strongest / has the biggest blind spot"); kept only "what did everyone miss?" | A single underlying model evaluating its own outputs exhibits self-preference bias even when responses are anonymized — anonymization hides the label, not the style the model recognizes as its own. The "what did everyone miss" question, and especially cross-response connections, carries the developmental value without the biased ranking. (See *LLM Evaluators Recognize and Favor Their Own Generations*, NeurIPS 2024, arXiv:2404.13076.) |
-| **Replaced the verdict-chairman with an adjudication layer.** Kept Lehmann's *converge / clash / blind-spots* sections; removed *the recommendation* and *the one verdict*. | Those first three sections are already developmental — they surface perspectives and keep tensions visible. The verdict collapses them. For generative work the conflicts and gaps are the product; resolving them is the author's job, not the council's. |
-| **Added a no-dismiss-for-comfort guardrail** to the adjudication layer. | An audience-aware layer can quietly reclassify valid, in-scope, *uncomfortable* observations as "out of scope." The guardrail permits setting an observation aside only for being *mistaken* or *out-of-scope*, never for being *threatening*, and forces uncomfortable-but-relevant items to be flagged up. |
-| **Context-isolated the Outsider seat.** | A concrete fix to a real bug in the convergent Claude skill: its workspace-context scan feeds enriched context to *every* advisor, including the Outsider — silently contaminating the one seat whose entire value is reacting *without* context. Here the Outsider explicitly receives only the bare artifact. |
-| **Advisors stay audience-blind; only the adjudication layer knows the audience.** | If audience context leaks into an advisor, it self-censors the objections it assumes the audience won't care about — the exact contamination separate agents exist to prevent. |
-| **Report-don't-prescribe + no-rewriting rule** on every advisor. | The council produces *information about the artifact*, never a replacement draft. This keeps authorship — and the synthesis — with the user. |
-| **Domain skins for the Contrarian; per-run audience descriptor.** | Generalizes a single-domain tool to any topic via structural (not role-played) opposition, while the audience is supplied per run instead of hardcoded. |
-| **Made the adjudication layer optional/skippable.** | On short artifacts it's overhead between author and work; it earns its cost only when feedback volume is high. |
-
-A note in fairness: none of these are corrections of mistakes in the convergent councils except the Outsider-isolation bug. The rest are consequences of pointing the same machinery at a different problem.
-
----
+Credit for the multi-perspective council lineage belongs to Andrej Karpathy's LLM Council work and Ole Lehmann's Claude-oriented LLM Council skill. This repo adapts that machinery for developmental critique rather than verdict production.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see `LICENSE`.

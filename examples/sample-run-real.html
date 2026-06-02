@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Council Report — engineering-preset.md</title>
+<style>
+  :root{
+    --ink:#1a1c1f; --muted:#5b6470; --line:#e3e6ea; --bg:#f7f8fa; --card:#fff;
+    --merit:#1f7a4d; --mistaken:#9a6b00; --scope:#5a5fb0; --flag:#b5341f; --clash:#0d6b9a;
+  }
+  *{box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);margin:0;line-height:1.55;font-size:16px}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 24px 96px}
+  h1{font-size:30px;margin:0 0 4px;letter-spacing:-.02em}
+  .sub{color:var(--muted);margin:0 0 32px;font-size:15px}
+  h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);
+    margin:40px 0 14px;border-bottom:1px solid var(--line);padding-bottom:8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:14px 0;
+    box-shadow:0 1px 2px rgba(20,25,35,.03)}
+  .artifact{font-size:14px;color:var(--muted)}
+  .artifact p{margin:.5em 0}
+  .q{font-style:italic;color:var(--ink)}
+  ul{margin:.4em 0 .4em;padding-left:1.25em}
+  li{margin:.35em 0}
+  .tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+    padding:2px 8px;border-radius:999px;margin-right:8px;vertical-align:middle}
+  .t-merit{background:#e6f4ec;color:var(--merit)}
+  .t-mistaken{background:#fbf2dd;color:var(--mistaken)}
+  .t-scope{background:#ecedf9;color:var(--scope)}
+  .t-flag{background:#fbe7e3;color:var(--flag)}
+  .t-clash{background:#e1f1f8;color:var(--clash)}
+  .flagcard{border-left:4px solid var(--flag)}
+  .clashcard{border-left:4px solid var(--clash)}
+  details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:0 18px}
+  details[open]{padding-bottom:14px}
+  summary{cursor:pointer;padding:14px 0;font-weight:600;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--muted)}
+  details[open] summary::before{content:"▾ "}
+  .advisor{font-size:14.5px;color:#33373d}
+  .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 0 4px}
+  .seat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-align:center;font-size:12px}
+  .seat b{display:block;font-size:12.5px;margin-bottom:4px}
+  .seat span{color:var(--muted);font-size:11px;line-height:1.35;display:block}
+  .axis{margin:18px 0;padding:14px 16px;border:1px dashed var(--line);border-radius:10px;background:#fcfcfd;font-size:14px}
+  .axis b{color:var(--clash)}
+  .legend{font-size:12px;color:var(--muted);margin-top:10px}
+  .legend span{margin-right:14px;white-space:nowrap}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:middle}
+  footer{margin-top:54px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+  code{background:#eef0f3;padding:1px 5px;border-radius:5px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Developmental Council — Report</h1>
+  <p class="sub">Counciled: <code>examples/engineering-preset.md</code> &nbsp;·&nbsp; 2026-06-01 13:33:14</p>
+
+  <div class="card artifact">
+    <strong>Framed artifact.</strong>
+    <p>An example "preset" shipped in the developmental-council repo, showing how to skin the council for engineering/architecture design reviews. The domain is meta: configuration/reference design for engineers who will <em>use</em> the preset to run a real review.</p>
+    <p class="q">Question: Is this preset well-designed? What is it missing, where will it mislead someone configuring a real review?</p>
+    <p>Seats: Contrarian (skin — the engineer who configures a real review from it cold), First-Principles, Expansionist, Outsider (bare artifact), Executor. Plus 3 gap-pass reviewers + adjudication. Audience/scope (adjudication only): an engineer reaching for this as a starting config; values concrete, non-misleading guidance; reversible docs.</p>
+  </div>
+
+  <h2>The reframe that organizes everything</h2>
+  <div class="card">
+    All three gap-pass reviewers independently converged: <strong>the advisors judged the preset as if it were the skill.</strong> A preset owes its reader one worked example of seat-skinning. The apparatus they faulted it for missing — how context is withheld from the Outsider, the canonical seat roster, the report-don't-prescribe rule, the clean spawn — all live in <code>SKILL.md</code>, which the advisors could not see. This down-weights several harsh findings and sharpens the few that are genuinely the preset's own.
+  </div>
+
+  <h2>Convergence &amp; tension map</h2>
+  <div class="card">
+    <div class="grid">
+      <div class="seat"><b>Contrarian</b><span>Outsider line is a "lie"; self-hostable bias; Watch-item over-prescribes</span></div>
+      <div class="seat"><b>First-Principles</b><span>Executor is dead weight — kill it</span></div>
+      <div class="seat"><b>Expansionist</b><span>Watch-item is buried gold; reversibility dial is load-bearing</span></div>
+      <div class="seat"><b>Outsider</b><span>Undefined terms; seat-vs-operator paradox</span></div>
+      <div class="seat"><b>Executor</b><span>No mechanic; "which files?"; bracketed reversibility</span></div>
+    </div>
+    <div class="axis"><b>Core clash (left standing):</b> First-Principles "overlap is waste — kill the Executor" &nbsp;↔&nbsp; Expansionist "overlap is the <em>product</em> — reinforce/diverge is signal." Both gap reviewers flagged this as the unnamed tension; the council has no stated theory of when redundancy is signal vs. dead weight. The author resolves it, not the council.</div>
+    <div class="axis"><b>Strong convergence:</b> Contrarian + Executor + Outsider all land on the <em>Outsider carve-out</em>. Contrarian + Expansionist both fixate on the <em>Watch-item</em>. Two opposite-job seats on one passage = load-bearing.</div>
+    <p class="legend">
+      <span><span class="dot" style="background:#1f7a4d"></span>merit</span>
+      <span><span class="dot" style="background:#9a6b00"></span>mistaken</span>
+      <span><span class="dot" style="background:#5a5fb0"></span>out of scope</span>
+      <span><span class="dot" style="background:#b5341f"></span>flagged up</span>
+      <span><span class="dot" style="background:#0d6b9a"></span>clash (unresolved)</span>
+    </p>
+  </div>
+
+  <h2>Adjudication</h2>
+
+  <div class="card flagcard">
+    <span class="tag t-flag">Flag up</span><strong>The self-hostable default bias.</strong>
+    The audience descriptor ships with <em>"we value explicit, operable, self-hostable infrastructure over managed-service convenience"</em> baked in as a default. The clearest answer to "where will it mislead." The descriptor is meant to hold a team's real values — but as a <strong>shipped example default</strong>, it teaches the copy-paste user to smuggle a conclusion into the supposedly-neutral scope line, pre-biasing every review against the managed answer before the Contrarian speaks. Comfortable to wave away as "just sample text" — which is exactly why it's flagged, not bracketed. An example's defaults are its most-copied part.
+  </div>
+
+  <div class="card">
+    <span class="tag t-merit">Merit</span><strong>Missing pieces — engage.</strong>
+    <ul>
+      <li><strong>"The relevant code / configs / manifests"</strong> has no bounding heuristic. For a real system this is dump-everything vs. guess — both poison the review. Add blast-radius / the-diff / files-touched guidance. <em>(Executor)</em></li>
+      <li><strong><code>[reversible / one-way-door]</code></strong> is an un-owned bracket — flagged as strongly affecting scope but never says who picks it or when. Make it a required framing input. <em>(Executor, Expansionist)</em></li>
+      <li><strong>Point to where Outsider-isolation is enforced</strong> (the SKILL.md context-isolation matrix), so a standalone reader doesn't think they must hand-build it. <em>(residue of Contrarian/Executor)</em></li>
+    </ul>
+  </div>
+
+  <div class="card clashcard">
+    <span class="tag t-clash">Clash — not resolved</span><strong>Kill the Executor vs. overlap is the product.</strong>
+    First-Principles: the Executor catches nothing its neighbors don't ("no path to production" is already First-Principles' wrong-problem + Contrarian's won't-survive-3am); "migration path" is a checklist, not a stance; bold <strong>KEEP</strong> is the tell. Expansionist: the Watch-item's whole point is that overlap is <em>signal</em> — two seats reinforcing is the strongest reason to stop. They can't both be right about what overlap means. Input for you: <code>SKILL.md</code> already makes the Executor optional and notes dropping it unpairs First-Principles — so the skill's own heuristic is First-Principles' argument; the bold KEEP is the disputed domain recommendation.
+  </div>
+
+  <div class="card">
+    <span class="tag t-mistaken">Mistaken</span><strong>Set aside, with reason.</strong>
+    <ul>
+      <li><strong>"Operational lie / breaks execution"</strong> framing of the Outsider mechanic — <code>SKILL.md</code> owns the mechanic (context-isolation matrix + explicit "spawn it clean"). Only the doc-pointer residue (above) survives.</li>
+      <li><strong>"Undefined terms / Outsider paradox"</strong> — terms are defined in <code>SKILL.md</code>/<code>README</code>; the paradox conflates the <em>operator</em> (needs the apparatus) with the <em>Outsider sub-agent</em> (gets the bare artifact). Residue: expand <strong>ADRs</strong> on first use, since the preset can be dropped into a framing step detached from the repo.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="tag t-scope">Out of scope</span><strong>Bracket to the parent skill.</strong>
+    <ul>
+      <li><strong>"Watch-item contradicts report-don't-prescribe"</strong> — naming "a simpler shape would have avoided this" is reporting a flaw, not rewriting the design; the sibling preset's Contrarian does the same and the guardrail holds. Watch the phrasing; not a live defect.</li>
+      <li><strong>"Executor is a checklist — move it to the output template"</strong> — a SKILL-level redesign, not something this preset can decide. Executor-optionality already lives there.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="tag t-merit">Strengthen</span><strong>Strengthening track (Expansionist) — act on, don't defend.</strong>
+    <ul>
+      <li><strong>Worth it:</strong> surface the <strong>reinforce-vs-diverge</strong> primitive instead of burying it as the last footnote — it's a reusable adjudication idea (convergent agreement vs. stacked independent failure modes), the strongest thing in the file.</li>
+      <li><strong>Worth it:</strong> make the <strong>reversible / one-way-door</strong> dial load-bearing and say <em>why</em> — irreversibility is exactly when developmental beats convergent review. The best argument for using the tool at all.</li>
+      <li><strong>Skip as scope-creep:</strong> promoting these into the council <em>core</em> — that's a <code>SKILL.md</code> decision; cross-referencing is enough for the preset.</li>
+    </ul>
+  </div>
+
+  <h2>Bottom line</h2>
+  <div class="card">
+    <p><strong>Well-designed?</strong> For its job — a worked seat-skinning example — largely yes. The skins are vivid and the engineering Watch-item is genuinely good. Most of the harshest critiques aimed at the parent skill, not this file.</p>
+    <p><strong>Missing?</strong> A code-bounding heuristic, a required reversibility input, a pointer to Outsider enforcement, and the reinforce-vs-diverge idea pulled up where it can be seen.</p>
+    <p><strong>Where will it mislead?</strong> (1) The self-hostable-over-managed default silently biases every review built from it. (2) The "but NOT for the Outsider" line, read standalone, looks like an instruction the configurer must hand-implement when the skill already handles it.</p>
+  </div>
+
+  <h2>Full advisor responses</h2>
+
+  <details><summary>Contrarian — the engineer configuring a real review from this preset</summary>
+    <div class="advisor">
+    <p>The preset's biggest operational lie is the Outsider boundary, and a real user will get it wrong. Step 1A says "gather domain context... but NOT for the Outsider" — but this is a reference doc dropped into a framing step, not enforced code. Nothing tells the configuring engineer HOW to withhold context from one seat while feeding four others. The user reads it, nods, and pastes the whole bundle into a shared frame anyway. The seat that's supposed to catch the onboarding cliff now silently holds the system in its head — quietly, with no error.</p>
+    <p>Second, the Watch-item contradicts "report, don't prescribe" and the artifact never reconciles it. The Contrarian skin is told to argue "the simpler shape that would have avoided this" and First-Principles "don't build this." Two seats are now both prescribing a verdict.</p>
+    <p>Third, "self-hostable infrastructure over managed-service convenience" is baked into the audience descriptor as a default. A thumb on the scale — any review run from this preset is pre-biased against the managed-service answer before the Contrarian opens its mouth.</p>
+    </div>
+  </details>
+
+  <details><summary>First-Principles</summary>
+    <div class="advisor">
+    <p>The Executor seat is dead weight, and the preset's own logic exposes it. The real test of every seat: what does it catch that no other seat catches? The Executor's flagship catch — elegant on paper, no realistic path to production — is already caught twice: First-Principles says the elegance solves the wrong problem, Contrarian says it won't survive 3am. "Migration path" and "ship incrementally" aren't a thinking stance; they're a checklist — and a checklist needs a line in the output template, not a seat.</p>
+    <p>The Watch-item is a confession: Contrarian and First-Principles "will often both say don't build this." The author flagged overlap on the wrong pair. The genuine redundancy is Executor ↔ the don't-build-this consensus. You wrote "KEEP for engineering" in bold — that emphasis is the tell. Does operability-and-shipping need a thinking stance, or a rubric?</p>
+    </div>
+  </details>
+
+  <details><summary>Expansionist</summary>
+    <div class="advisor">
+    <p>The strongest thread is the "Watch-item specific to engineering" — buried at the bottom as a footnote. It encodes a rule for distinguishing convergent agreement (two seats happen to land on the same verdict) from compositional signal (two independent failure modes stacking). "Reinforce = strong signal to stop; diverge = two separate problems" is a reusable adjudication primitive, not an engineering quirk. It belongs to the council's core thesis and generalizes to every preset.</p>
+    <p>The second undervalued asset is the reversible-vs-one-way-door descriptor. You note it "strongly affects what counts as in-scope" and move on. That dial deserves to be load-bearing: irreversibility is precisely when the council's developmental stance pays off most — the strongest argument for why this tool beats a straight answer.</p>
+    </div>
+  </details>
+
+  <details><summary>Outsider — bare artifact, zero context</summary>
+    <div class="advisor">
+    <p>The document is itself a configuration for the council. Used as if known: "developmental council," "seats," "framing step," "adjudication layer," "Step 1A," "tension-pairs," "skin" (never defined). "ADRs" with no expansion (inferring Architecture Decision Records). "one-way-door," "CLAUDE.md," "operability" all assumed. The seats are named as if a canonical roster exists elsewhere; "KEEP for engineering" implies some seats get dropped, but the default set is never stated.</p>
+    <p>What doesn't add up: the doc tells the Outsider to read with no system knowledge, yet to occupy the seat I must already understand the whole council apparatus. The instructions presuppose the very insider context the seat is supposed to lack. The clearest part: the Watch-item — stands on its own without outside context.</p>
+    </div>
+  </details>
+
+  <details><summary>Executor</summary>
+    <div class="advisor">
+    <p>The Outsider carve-out is where execution breaks. The preset says "but NOT for the Outsider," but the seat config spawns five sub-agents from one framing step, with no mechanic for starving one. Monday morning: a different prompt? A redacted artifact? An AI running the skill will hand all five the same bundle — path of least resistance — and the differentiator silently collapses.</p>
+    <p>Second: "the relevant code / configs / manifests" has no first step for a large system. Which files? No heuristic (blast radius? the diff?). Someone dumps everything or guesses — both poison the review.</p>
+    <p>Third: the "[reversible / one-way-door]" fill-in-the-blank is flagged as strongly affecting scope but never says who decides or when. It needs to be a required input, not a bracketed suggestion. The seat list is otherwise immediately actionable.</p>
+    </div>
+  </details>
+
+  <h2>Gap pass — what did everyone miss?</h2>
+  <details><summary>Three reviewers on the cross-response connections</summary>
+    <div class="advisor">
+    <p><strong>Reviewer 1:</strong> All five treat the preset as the unit of analysis; none asked whether "engineering review" should be a preset at all — yet their own observations dismantle nearly every engineering-specific element. A (kill Executor — overlap is waste) vs. D (overlap is the product) is a direct tension no single advisor saw; B/E hit the Outsider carve-out as a gap, but only C proves the deeper contradiction.</p>
+    <p><strong>Reviewer 2:</strong> A and D both touched the Watch-item and pulled opposite ways — the reinforce/diverge logic is exactly the test that proves or kills A's redundancy claim; the council has no stated theory of when redundancy is signal vs. waste. And the Outsider isn't underspecified — it's incoherent as a same-context seat; it must be a separate pass.</p>
+    <p><strong>Reviewer 3:</strong> Every advisor judged the preset as if it were the skill — the apparatus they faulted is owned by SKILL.md. No one read the sibling life-decision preset, which already answers several complaints and shows reinforce-vs-diverge is a cross-preset pattern. A and D are the same observation inverted: the preset's worth is in its adjudication logic, not its seat list.</p>
+    </div>
+  </details>
+
+  <footer>
+    Developmental council · 5 advisors + 3 gap-pass reviewers + adjudication · no verdict, no ranking — conflicts left standing for the author.<br>
+    Counciled <code>examples/engineering-preset.md</code> on 2026-06-01 13:33:14. Full transcript: <code>council-transcript-20260601-133314.md</code>.
+  </footer>
+
+</div>
+</body>
+</html>

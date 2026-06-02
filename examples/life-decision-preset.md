@@ -1,56 +1,37 @@
 # Preset: General Life / Personal Decision
 
-A worked configuration of the developmental council for personal decisions and
-open-ended life questions — a career move, a big purchase, how to approach a
-relationship or commitment, a fork you keep circling.
+Use this configuration for personal decisions and open-ended life questions: career moves, big purchases, commitments, relationship approaches, moves, or forks the user keeps circling.
 
 ## When to use
-Bring a decision you've been going back and forth on, where being wrong is costly
-and the value is in *thinking it through more completely* — not in being handed an
-answer. If you already know what you want and you're shopping for permission, skip
-the council; it exists to surface what you're avoiding.
+
+Use the council when the user is genuinely torn, being wrong would be costly, and the value is in thinking more completely rather than being handed an answer.
+
+Do not use it when the user already wants a simple answer or when the decision is low-stakes.
 
 ## Seat configuration
 
-- **Contrarian — skin: the honest friend who suspects you've already decided.**
-  Names the rationalization, the option you're dodging, the cost you're not pricing
-  in, the question you keep not asking yourself. Kind, but unwilling to collude with
-  a decision you've pre-made.
-- **First-Principles** — "what are you actually trying to get here?" Strips the
-  framing. Often the most useful output is "the thing you're optimizing for isn't the
-  thing you actually want" — the new job is about status when you said it was about
-  money; the move is about escape when you framed it as opportunity.
-- **Expansionist** — what's the bigger version, the option you haven't considered,
-  the upside you're under-weighting because you're focused on the downside? Also names
-  what's genuinely *good* about the direction you're leaning.
-- **Outsider** — context-starved. Reacts to the bare decision with no knowledge of
-  your history, your fears, or your self-narrative. Catches what looks completely
-  different to someone who isn't inside your story.
-- **Executor — usually KEEP.** What's the actual first step, this week, that moves
-  this forward or tests it cheaply? Flags decisions that stay abstract forever because
-  there's no concrete next action. (Drop only if the question is purely reflective with
-  no action attached.)
+- **Contrarian — skin: the honest friend who suspects the user has already decided.** Names rationalizations, avoided costs, and questions the user keeps not asking.
+- **First-Principles** — asks what the user is actually trying to get, not merely what the framed options imply.
+- **Expansionist** — names the bigger version, hidden upside, and what is genuinely good about the direction the user is considering.
+- **Outsider** — receives only the bare decision. Reacts without the user's self-narrative.
+- **Executor — usually keep.** Identifies the first cheap test or concrete step that moves the decision out of abstraction.
 
-## Domain context to gather (Step 1A) — but NOT for the Outsider
-- Whatever the user shares about constraints, history, and what's at stake.
-- Prior council transcripts on the same decision (to see how thinking has shifted).
-- Be sparing — for personal decisions, over-gathering risks the council parroting
-  the user's own framing back. The framing should stay neutral.
+## Context to gather for non-Outsider advisors
 
-## Audience / scope descriptor (adjudication layer only)
-Usually just the user themselves and their actual values/constraints. The key
-scope question: "what does this person actually care about" — so the adjudication
-layer can tell apart "this objection doesn't matter to what I value" (legitimate
-out-of-scope) from "this objection is the thing I'm avoiding" (flag it up).
+- User-stated constraints, history, and stakes.
+- Prior reflections or council transcripts on the same decision.
+- Only the context needed to understand the tradeoff.
 
-## Tension-pairs in this domain
-- Contrarian (the cost / the avoidance) ↔ Expansionist (the bigger upside)
-- First-Principles (you want a different thing than you think) ↔ Executor (here's
-  the cheap first test)
-- Outsider: "from the outside, this looks like ___."
+For personal decisions, avoid over-gathering. Too much context can cause the council to parrot the user's own framing.
 
-## Watch-item specific to life decisions
-The guardrail matters *most* here. A personal decision is exactly where an
-audience-aware layer is tempted to soften the uncomfortable-but-true observation
-because the "audience" is the user's own feelings. Hold the line: set aside only
-for being mistaken or genuinely not-what-you-value — never for being hard to hear.
+## Audience/scope descriptor for adjudication only
+
+Usually the user and their actual values/constraints.
+
+Key question:
+
+> Is this objection genuinely outside what the user values, or is it the thing the user is avoiding?
+
+## Watch-item
+
+The no-dismiss-for-comfort guardrail matters most here. Set aside observations only when mistaken or truly out of scope, never because they are hard to hear.

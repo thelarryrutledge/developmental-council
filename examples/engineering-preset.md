@@ -1,56 +1,41 @@
 # Preset: Engineering / Architecture Review
 
-A worked configuration of the developmental council for technical design work —
-architecture decisions, API shapes, infrastructure choices, refactors. Drop this
-context into the framing step, or keep it as a reference for how to skin the council
-for engineering.
+Use this configuration for technical design work: architecture decisions, API shapes, infrastructure choices, refactors, migration plans, and operational tradeoffs.
 
 ## When to use
-Bring a design, not a bug. The council develops *decisions with no single right
-answer* — "S3 vs. Postgres for state," "is this abstraction earning its keep,"
-"will this coupling hurt in six months." It is **not** for questions with a knowable
-answer (use a test, a benchmark, or a straight answer for those).
+
+Bring a design, not a bug. Use the council for decisions with no single obvious right answer:
+
+- "Should this state live in Postgres, Redis, or object storage?"
+- "Is this abstraction earning its keep?"
+- "Will this coupling hurt in six months?"
+- "How should we split these queues or services?"
+
+Do not use it when a test, benchmark, documentation lookup, or direct code review would answer the question better.
 
 ## Seat configuration
 
-- **Contrarian — skin: the on-call maintainer who inherits this in six months.**
-  Argues operational reality: what pages someone at 3am, hidden coupling, the failure
-  mode no one designed for, the simpler shape that would have avoided this. Not
-  "is the code wrong" — "what will this cost to live with."
-- **First-Principles** — "what are we actually solving?" Catches the wrong-variable
-  trap: optimizing throughput when the real constraint is operability; building a
-  framework when a script would do; solving a problem the architecture shouldn't have
-  created in the first place.
-- **Expansionist** — adjacent leverage. Does this design unlock something bigger
-  (a reusable primitive, a capability the team's been wanting)? What's the strong part
-  worth investing further in?
-- **Outsider** — context-starved. Reads the design with no knowledge of the system,
-  the team's history, or the constraints. Catches what's only obvious to people who
-  already hold the system in their heads — the onboarding cliff, the implicit
-  assumption, the undocumented "everyone knows that."
-- **Executor — KEEP for engineering.** What's the smallest first step? Can this ship
-  incrementally or is it a big-bang rewrite? What's the migration path? Flags
-  designs that are elegant on paper with no realistic path to production.
+- **Contrarian — skin: the on-call maintainer who inherits this in six months.** Argues operational reality, hidden coupling, incident risk, failure modes, and simpler shapes.
+- **First-Principles** — asks what problem is actually being solved and whether the architecture created its own problem.
+- **Expansionist** — looks for reusable primitives, adjacent capabilities, and the part of the design worth developing further.
+- **Outsider** — receives only the bare design. Catches onboarding cliffs, implicit assumptions, and places where the design only makes sense to insiders.
+- **Executor — keep.** Finds the smallest credible first step, migration path, rollout strategy, and production risk.
 
-## Domain context to gather (Step 1A) — but NOT for the Outsider
-- The relevant code / configs / manifests for the component in question.
-- `CLAUDE.md` or architecture docs describing the system and its constraints.
-- Past decisions / ADRs (and prior council transcripts) on adjacent choices.
-- Operational reality: what's currently on-call burden, what's already fragile.
+## Context to gather for non-Outsider advisors
 
-## Audience / scope descriptor (adjudication layer only)
-Typically: "the team that maintains this; we value explicit, operable,
-self-hostable infrastructure over managed-service convenience; this is a
-[reversible / one-way-door] decision." Adjust per decision — the
-reversible-vs-irreversible framing strongly affects what counts as in-scope.
+- Relevant source/config/manifests.
+- Architecture docs, ADRs, README files, or project-specific agent instruction files.
+- Prior decisions on adjacent choices.
+- Operational realities: incident history, on-call pain, deployment constraints, cost constraints.
 
-## Tension-pairs in this domain
-- Contrarian (operability cost) ↔ Expansionist (capability upside)
-- First-Principles (don't build this) ↔ Executor (here's how to ship it)
-- Outsider holds the middle: "I don't understand why this exists."
+Do not pass any of this to the Outsider.
 
-## Watch-item specific to engineering
-Contrarian and First-Principles will often *both* say "don't build this" — one on
-operability grounds, one on wrong-problem grounds. That's not redundancy if the
-*reasons* differ; the adjudication layer should keep both and note whether they
-reinforce (strong signal to stop) or diverge (two separate problems).
+## Audience/scope descriptor for adjudication only
+
+Example:
+
+> The maintainers of this system. We value explicit, operable, boring infrastructure over cleverness. This is a reversible/irreversible decision. Production reliability matters more than theoretical elegance.
+
+## Watch-item
+
+Contrarian and First-Principles may both argue against the design. Keep both if the reasons differ: one may be naming operational cost while the other names the wrong-problem trap.
