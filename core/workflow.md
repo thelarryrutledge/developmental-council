@@ -1,9 +1,15 @@
 # Core Workflow
 
-Developmental Council v3 runs four phases.
+Developmental Council's core is two phases — the default:
 
 ```text
-Council → Chair → Executor → Reviewer
+Council → Chair          (default — the product)
+```
+
+Two optional phases extend it, on explicit request, to make the Chair's recommendation actionable:
+
+```text
+→ Executor → Reviewer    (opt-in — artifacts and verification)
 ```
 
 The core workflow is domain-neutral. Domain-specific behavior lives in packages, councils, chairs, executors, and reviewers.
