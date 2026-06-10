@@ -110,7 +110,7 @@ The user should be able to act from the Controlled Convergence Report without re
 
 When file output is available, **produce the report as files by default** — do not wait to be asked. A run's deliverable is the artifact, not a chat dump; keep the chat reply to a concise summary plus next steps that point at the file. Create:
 
-- `developmental-council-report-[timestamp].md` — always
+- `developmental-council-report-[timestamp].md` — always; begins with a YAML run-metadata block (see `core/workflow.md` → Final assembly) so runs can be analyzed across time
 - `developmental-council-report-[timestamp].html` — the styled artifact (design-health chart, severity tags, and an in-browser viewer for the advisor appendices); produce it by default when file output is available
 - `appendices/` — one markdown file per advisor report
 

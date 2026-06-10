@@ -38,8 +38,19 @@ Include:
 - user goal
 - audience/scope, if relevant
 - requested output level: review only, convergence, artifacts, or full workflow
+- requested advisor set, if any (see below)
 
 Ask at most one clarifying question only when the input is too ambiguous to proceed. If enough is available, proceed.
+
+### Advisor selection
+
+By default, run the package's full council. To run a reduced set:
+
+- If the user names specific advisors or lenses (e.g. "just the reliability and operations lenses", "skip the cost advisor"), run exactly that set and record it in the brief.
+- If the user names no advisors, run the full council.
+- If a named advisor does not exist in the package, do not silently substitute — ask which lens they meant, or proceed with the closest existing lens and say so.
+
+Record the resolved advisor set in the run metadata so reduced runs are auditable.
 
 ## Phase 1 — Council
 
@@ -149,14 +160,40 @@ This only applies in the full pipeline (where an Executor produced something to 
 - If the second pass still fails, **stop and escalate to the human** — report the unresolved issue and the disagreement rather than looping again. Never run unbounded revision cycles.
 - If the Reviewer's objection is really with the Chair's decision (not the execution of it), do not revise — surface it to the human as a decision point.
 
+To classify an objection, apply this test:
+
+- **Execution problem → revise** (one cycle): the deliverable violates a stated Chair recommendation, contains a technical/logical error, or omits something the Chair asked for.
+- **Decision problem → escalate** (do not revise): the objection is "the Chair's chosen path is itself wrong" — the deliverable faithfully executes the recommendation, but the Reviewer disputes the recommendation.
+
+When genuinely unsure which it is, escalate rather than revise — looping on a decision the Chair already made wastes cycles and can erode the Chair's preserved tradeoffs.
+
 ## Final assembly
 
 Produce:
 
-1. Executive summary
-2. Controlled Convergence Report
-3. Executor Deliverables, if any
-4. Reviewer Assessment, if any
-5. Advisor Appendix
+1. Run metadata (see below)
+2. Executive summary
+3. Controlled Convergence Report
+4. Executor Deliverables, if any
+5. Reviewer Assessment, if any
+6. Advisor Appendix
 
 The primary report should be concise. Appendices may be detailed.
+
+### Run metadata
+
+Begin the markdown report with a structured metadata block (YAML frontmatter) so runs can be compared and analyzed across time. This is the machine-readable record of how the run was configured:
+
+```yaml
+---
+developmental_council_run:
+  date: YYYY-MM-DD
+  package: engineering        # or writing, or a custom package name
+  scope: council+chair        # council-only | council+chair | full-pipeline
+  execution_mode: multi-agent # multi-agent | single-session
+  advisor_count: 6
+  advisors: [reliability, maintainability, operations, cost-complexity, product, cold-onboarder]
+---
+```
+
+Keep it accurate, not aspirational: `execution_mode` must reflect what actually ran (true isolated agents vs. sequential personas), and `advisors` must list the set that actually ran. The HTML report does not need the raw block — its header chips already convey scope, advisor count, and mode for human readers.

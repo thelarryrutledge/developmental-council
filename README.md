@@ -30,6 +30,20 @@ Good fits: architecture and design decisions, strategy, drafts and arguments, pl
 
 Skip it for: simple lookups, direct calculations, trivial implementation questions, low-stakes choices, or anything where a normal answer is clearer. A rough rule — if there is no meaningful tradeoff and no real cost to being wrong, don't run the council.
 
+## How to invoke
+
+Trigger the skill with a phrase like `council this` and the thing you want examined. You don't pick the internals — the skill frames a brief, selects a package, and runs the phases.
+
+```text
+council this architecture proposal: <paste or link the design>
+```
+
+What comes back: a **Controlled Convergence Report** — an executive summary, the ranked findings (where advisors agreed, what's must-fix vs. optional), and the unresolved tradeoffs left as explicit decision points for you. When file output is available you also get a styled HTML report and the raw advisor appendices.
+
+**Which package runs:** the skill picks by domain — writing/editing/arguments → Writing; architecture/infrastructure/code/refactors → Engineering; anything else → a generic council built for your domain. To steer it, say so (e.g. "use the engineering package", or "just the reliability and operations lenses").
+
+To go further than the default, ask for it: "…and turn it into a plan" or "run the full council" adds the Executor (artifacts) and Reviewer (verification).
+
 ## What changed in v3
 
 Earlier versions focused on developmental critique without collapsing to a verdict. v3 keeps that divergent review step but adds a synthesis and action layer.
