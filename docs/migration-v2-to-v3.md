@@ -1,5 +1,7 @@
 # Migration: v2 to v3
 
+> **Historical note.** v2 is no longer shipped in this repo. This document is retained for context on how the current v3 design evolved, not as an active upgrade runbook.
+
 ## What changed
 
 The original Developmental Council was intentionally non-convergent. It surfaced perspectives, disagreements, and gaps without producing a final verdict.

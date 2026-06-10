@@ -1,6 +1,7 @@
 # Council run artifacts
 council-report-*.html
 council-transcript-*.md
+output/
 
 # OS / editor
 .DS_Store

@@ -78,19 +78,27 @@ Do not run it for:
 
 ## Required behavior
 
+`core/workflow.md` is the authoritative description of the phases. At a glance:
+
 1. Frame a neutral brief.
 2. Select or build the package.
-3. Run Council advisors independently.
-4. Run the Chair over structured advisor findings.
-5. Run the Executor only when the user wants artifacts, revisions, plans, code, PR drafts, checklists, or next-step outputs.
-6. Run the Reviewer when Executor output exists or when correctness matters.
-7. Produce the final report with advisor appendix.
+3. Run the Council, then the Chair (the default path).
+4. Run the Executor only when the user wants artifacts, revisions, plans, code, PR drafts, checklists, or next-step outputs.
+5. Run the Reviewer when Executor output exists or when correctness matters.
+6. Produce the final report with advisor appendix.
+
+For phase-by-phase rules, context isolation, and final assembly, follow `core/workflow.md` rather than this summary.
 
 ## Independence requirement
 
-Council advisors must not see each other's outputs. If parallel subagents are unavailable, simulate independence by running isolated sequential passes and not exposing earlier responses to later advisors.
+Council advisors must not influence each other during the Council phase. How fully that holds depends on how the skill is sourced — be explicit about which mode produced a report:
 
-The Chair, Executor, and Reviewer may see prior phase outputs.
+- **True multi-agent execution** (Claude Code, Codex, or any host that can spawn parallel subagents or make separate model calls): each advisor runs as a genuinely isolated agent with its own context. Independence is real.
+- **Single-session execution** (one model, no subagent support): advisors are distinct *personas* run as isolated sequential passes inside one context. This approximates independence but does not guarantee it — earlier reasoning can bias later personas. Treat these as "distinct-lens" perspectives, not provably independent ones.
+
+In either mode, do not expose one advisor's output to another during the Council phase. Always state which mode was used so the reader can calibrate how independent the perspectives actually are. Never present single-session persona passes as if they were fully isolated agents.
+
+The Chair, Executor, and Reviewer may see prior phase outputs; isolation only matters during the Council phase.
 
 ## Output preference
 
