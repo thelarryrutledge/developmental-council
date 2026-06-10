@@ -1,7 +1,7 @@
 # Council run artifacts
 council-report-*.html
 council-transcript-*.md
-output/
+council-reports/
 
 # Private profiles — kept local, never published
 private/

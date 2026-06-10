@@ -129,7 +129,7 @@ When file output is available, **produce the report as files by default** — do
 - `developmental-council-report-[timestamp].html` — the styled artifact (design-health chart, severity tags, and an in-browser viewer for the advisor appendices); produce it by default when file output is available
 - `appendices/` — one markdown file per advisor report
 
-Write these under an `output/[timestamp]/` directory. Only fall back to chat-only output when file output is genuinely unavailable.
+Write these under a `council-reports/[timestamp]/` directory in the working project (not `output/`, which many projects already use for their own build artifacts). Only fall back to chat-only output when file output is genuinely unavailable.
 
 ## Human authority
 
