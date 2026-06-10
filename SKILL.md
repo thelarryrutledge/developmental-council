@@ -32,7 +32,9 @@ Council → Chair → Executor → Reviewer
 
 When the host platform supports workspace/file reads, load these files as needed:
 
-- `core/workflow.md` — canonical workflow.
+- `core/workflow.md` — canonical workflow (phases, scope, run metadata).
+- `core/package-selection.md` — how to route a brief to the right package.
+- `core/context-isolation.md` — what context each phase may see (the isolation matrix).
 - `packages/<domain>/package.md` — domain routing and defaults.
 - `councils/<name>.md` — advisor definitions.
 - `chairs/<name>.md` — synthesis personality and priorities.
