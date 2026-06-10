@@ -1,21 +1,30 @@
 # Developmental Council
 
-A platform-neutral Agent Skill for structured multi-perspective review, controlled convergence, artifact creation, and verification.
+A platform-neutral Agent Skill for structured multi-perspective review and controlled convergence.
 
-Developmental Council v3 defines four phases:
+At its core, the council runs two phases:
+
+```text
+Council → Chair
+```
+
+- **Council** generates independent perspectives.
+- **Chair** performs controlled convergence — ranks them, preserves the real tradeoffs, and recommends a path.
+
+**This is the default.** Asking to "council this" runs Council → Chair and returns a recommendation. That is the product.
+
+When you want the Chair's recommendation made *actionable*, opt into two more phases:
 
 ```text
 Council → Chair → Executor → Reviewer
 ```
 
-- **Council** generates independent perspectives.
-- **Chair** performs controlled convergence.
-- **Executor** creates domain-appropriate artifacts. *(opt-in)*
-- **Reviewer** verifies the result. *(opt-in)*
+- **Executor** turns the recommendation into artifacts — a plan, code, revisions, a PR draft.
+- **Reviewer** verifies that work against the Chair's guidance.
 
-**Council → Chair is the default.** Most runs stop there — independent perspectives plus a converged recommendation. The Executor and Reviewer are opt-in: run them only when you want artifacts (a plan, code, revisions, a PR draft) or verification. See [`core/workflow.md`](core/workflow.md) for the scope/cost tradeoffs.
+Trigger these by asking for "a full council," "council with execution," or a follow-up to "make the recommendation actionable." See [`core/workflow.md`](core/workflow.md) for scope and cost.
 
-The human retains final authority.
+Either way — default or full — a run produces the report files, including the styled HTML report. The human retains final authority.
 
 **Controlled convergence** means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — never collapsing disagreement into a single false consensus. *(Canonical definition: [`core/workflow.md`](core/workflow.md), Phase 2.)*
 

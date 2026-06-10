@@ -9,23 +9,30 @@ Developmental Council is a platform-neutral agent skill for structured multi-per
 
 *Controlled convergence* means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — never collapsing disagreement into a single false consensus. (`core/workflow.md` Phase 2 is the canonical definition.)
 
-The v3 architecture separates four responsibilities:
+The core of the skill is two phases:
 
 1. **Council** — generates independent perspectives.
-2. **Chair** — performs controlled convergence.
-3. **Executor** — creates domain-appropriate artifacts from the Chair's decision.
+2. **Chair** — performs controlled convergence (ranks them, preserves real tradeoffs, recommends a path).
+
+This is the default and the product. Two further phases are **optional add-ons that make the Chair's recommendation actionable**, run only on explicit request:
+
+3. **Executor** — turns the Chair's recommendation into artifacts (plan, code, revisions, PR draft).
 4. **Reviewer** — verifies the Executor's work against the Chair's guidance.
 
 The human retains final authority. The skill should improve judgment and execution quality without pretending the system has the final word.
 
 ## Core operating rule
 
-Do not collapse perspectives too early.
-
-Run divergence first, then convergence, then artifact creation, then verification:
+Do not collapse perspectives too early. Run divergence first, then convergence:
 
 ```text
-Council → Chair → Executor → Reviewer
+Council → Chair          (default — the product)
+```
+
+When the user asks to make the recommendation actionable, extend with:
+
+```text
+→ Executor → Reviewer    (opt-in — artifacts and verification)
 ```
 
 ## File loading
@@ -80,16 +87,22 @@ Do not run it for:
 - low-stakes choices
 - requests where a normal answer would be clearer
 
-## Required behavior
+## Default flow and optional extensions
 
 `core/workflow.md` is the authoritative description of the phases. At a glance:
 
+**Default flow — always:**
+
 1. Frame a neutral brief.
 2. Select or build the package.
-3. Run the Council, then the Chair (the default path).
-4. Run the Executor only when the user wants artifacts, revisions, plans, code, PR drafts, checklists, or next-step outputs.
-5. Run the Reviewer when Executor output exists or when correctness matters.
-6. Produce the final report with advisor appendix.
+3. Run the Council, then the Chair. Stop here and produce the report — this is what "council this" means.
+
+**Optional extensions — only on explicit request** (e.g. "a full council," "council with execution," "turn this into a plan," or a follow-up to "make the recommendation actionable"):
+
+4. Run the Executor to turn the Chair's recommendation into artifacts.
+5. Run the Reviewer to verify the Executor's work.
+
+**Always, in either case:** produce the report files (markdown + HTML + advisor appendices), per Output preference below.
 
 For phase-by-phase rules, context isolation, and final assembly, follow `core/workflow.md` rather than this summary.
 
