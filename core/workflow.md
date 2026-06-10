@@ -75,6 +75,7 @@ The Chair must:
 - preserve unresolved tensions
 - name human decision points
 - recommend a path forward
+- attribute each finding to the advisor lens(es) that raised it, so the reader can trace any recommendation back to its source
 
 The Chair should not pretend consensus exists where it does not.
 

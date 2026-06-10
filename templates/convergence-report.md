@@ -18,6 +18,7 @@ For each recommendation include:
 - rationale
 - confidence
 - expected impact
+- source advisors — which advisor lens(es) raised it (e.g. "Robustness, Operations"), so each finding traces back to where it came from
 
 ## Areas of Agreement
 

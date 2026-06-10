@@ -17,6 +17,17 @@ The human retains final authority.
 
 **Controlled convergence** means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — rather than collapsing disagreement into a single false consensus.
 
+## When to use this
+
+The council's distinctive value is **preserving disagreement**: it runs independent perspectives, then converges *without* faking consensus, and hands you the unresolved tradeoffs as explicit decision points. Reach for it when that is what you need.
+
+- **vs. just asking the model.** For a quick fact, a calculation, or a low-stakes choice, ask directly — the council is slower and more expensive by design. Use it when the work is substantive and a single confident answer would paper over real tradeoffs.
+- **vs. `code-review`, `plan_review`, and similar.** Those find problems in a single artifact from one viewpoint. The council instead generates *multiple independent* viewpoints and reconciles them, surfacing where good arguments genuinely conflict.
+
+Good fits: architecture and design decisions, strategy, drafts and arguments, plans with real tradeoffs, "what am I missing?" pressure-tests.
+
+Skip it for: simple lookups, direct calculations, trivial implementation questions, low-stakes choices, or anything where a normal answer is clearer. A rough rule — if there is no meaningful tradeoff and no real cost to being wrong, don't run the council.
+
 ## What changed in v3
 
 Earlier versions focused on developmental critique without collapsing to a verdict. v3 keeps that divergent review step but adds a synthesis and action layer.
