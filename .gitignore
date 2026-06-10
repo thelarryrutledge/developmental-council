@@ -3,6 +3,9 @@ council-report-*.html
 council-transcript-*.md
 output/
 
+# Private profiles — kept local, never published
+private/
+
 # OS / editor
 .DS_Store
 *.swp
