@@ -7,7 +7,7 @@ description: Run a substantive idea, draft, design, architecture, strategy, or d
 
 Developmental Council is a platform-neutral agent skill for structured multi-perspective review and controlled convergence.
 
-*Controlled convergence* means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — never collapsing disagreement into a single false consensus.
+*Controlled convergence* means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — never collapsing disagreement into a single false consensus. (`core/workflow.md` Phase 2 is the canonical definition.)
 
 The v3 architecture separates four responsibilities:
 
@@ -108,10 +108,13 @@ Prefer a concise primary report with appendices.
 
 The user should be able to act from the Controlled Convergence Report without reading every advisor report. Full advisor reports should be included as supporting evidence, not the primary product.
 
-When file output is available, create:
+When file output is available, **produce the report as files by default** — do not wait to be asked. A run's deliverable is the artifact, not a chat dump; keep the chat reply to a concise summary plus next steps that point at the file. Create:
 
-- `developmental-council-report-[timestamp].md`
-- optional `developmental-council-report-[timestamp].html`
+- `developmental-council-report-[timestamp].md` — always
+- `developmental-council-report-[timestamp].html` — the styled artifact (design-health chart, severity tags, and an in-browser viewer for the advisor appendices); produce it by default when file output is available
+- `appendices/` — one markdown file per advisor report
+
+Write these under an `output/[timestamp]/` directory. Only fall back to chat-only output when file output is genuinely unavailable.
 
 ## Human authority
 

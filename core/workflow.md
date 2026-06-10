@@ -18,9 +18,10 @@ The full four-phase pipeline is the *maximum*, not the default. Most runs should
 | **Full pipeline** | Council → Chair → Executor → Reviewer | Use only when the user asks for artifacts, a plan, code, revisions, or "the whole thing": "turn this into a plan", "run the full council", "and implement it". |
 | **Review only** | Council | Use when the user explicitly wants raw perspectives without convergence. |
 
-The Executor and Reviewer roughly double the work and token cost of a run, which is why they are opt-in. Add them when the user wants something built or verified — not by default.
+Cost is dominated by the **Council**: each advisor is an independent generation, so a 6–7 advisor council is the largest single expense in a run. The Chair, Executor, and Reviewer each add a smaller increment on top. This has two consequences:
 
-Advisor count is also adjustable: run the package's full council by default, but honor an explicit request for a reduced set (e.g. "just the robustness and operations lenses") to keep a run cheap and fast.
+- The biggest lever on cost is **advisor count**, not which later phases run. Run the package's full council by default, but honor an explicit request for a reduced set (e.g. "just the reliability and operations lenses") to make a run substantially cheaper and faster.
+- Adding the Executor and Reviewer increases cost moderately (not a full doubling), so they are opt-in mainly because most runs do not need an artifact or verification — add them when the user wants something built or checked.
 
 If scope is ambiguous, assume **Default** (Council → Chair) and offer to continue to the Executor/Reviewer rather than running them unprompted.
 
@@ -58,6 +59,8 @@ Advisor output should use `templates/advisor-report.md`.
 
 Purpose: controlled convergence.
 
+**Controlled convergence** (canonical definition): ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — never collapsing disagreement into a single false consensus. (README.md and SKILL.md echo this one-liner; this is the source.)
+
 The Chair receives:
 
 - neutral brief
@@ -75,9 +78,18 @@ The Chair must:
 - preserve unresolved tensions
 - name human decision points
 - recommend a path forward
-- attribute each finding to the advisor lens(es) that raised it, so the reader can trace any recommendation back to its source
+- attribute each finding honestly (see traceability rule below)
 
 The Chair should not pretend consensus exists where it does not.
+
+### Traceability — attribute findings honestly
+
+Each finding should be traceable, but do not fabricate sourcing. Label every finding as one of:
+
+- **From advisors** — name the advisor lens(es) that actually raised it (e.g. "Reliability, Operations"). Only list an advisor that genuinely raised the point.
+- **From synthesis** — the Chair's own observation, derived by combining or ranking advisor inputs rather than stated by any single advisor. Mark it as synthesis instead of inventing an advisor source.
+
+This keeps the report honest about where evidence ends and the Chair's judgment begins. Never attribute a synthesis insight to an advisor who did not raise it.
 
 Chair output should use `templates/convergence-report.md`.
 

@@ -2,7 +2,7 @@
 
 A platform-neutral Agent Skill for structured multi-perspective review, controlled convergence, artifact creation, and verification.
 
-Developmental Council v3 runs complex work through four phases:
+Developmental Council v3 defines four phases:
 
 ```text
 Council → Chair → Executor → Reviewer
@@ -10,12 +10,14 @@ Council → Chair → Executor → Reviewer
 
 - **Council** generates independent perspectives.
 - **Chair** performs controlled convergence.
-- **Executor** creates domain-appropriate artifacts.
-- **Reviewer** verifies the result.
+- **Executor** creates domain-appropriate artifacts. *(opt-in)*
+- **Reviewer** verifies the result. *(opt-in)*
+
+**Council → Chair is the default.** Most runs stop there — independent perspectives plus a converged recommendation. The Executor and Reviewer are opt-in: run them only when you want artifacts (a plan, code, revisions, a PR draft) or verification. See [`core/workflow.md`](core/workflow.md) for the scope/cost tradeoffs.
 
 The human retains final authority.
 
-**Controlled convergence** means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — rather than collapsing disagreement into a single false consensus.
+**Controlled convergence** means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — never collapsing disagreement into a single false consensus. *(Canonical definition: [`core/workflow.md`](core/workflow.md), Phase 2.)*
 
 ## When to use this
 
@@ -103,6 +105,19 @@ developmental-council/
 The required entry point is `SKILL.md`.
 
 If a platform cannot dynamically read the supporting files, paste the relevant package and profile files into the session along with `SKILL.md`.
+
+### Installing as a symlink (for development)
+
+To keep the installed skill in sync with a working copy, symlink it to the repo instead of copying:
+
+```sh
+ln -s /path/to/developmental-council ~/.claude/skills/developmental-council
+```
+
+Two things to know when you do this:
+
+- The skill folder then also exposes `output/` (gitignored run artifacts) and `private/` (gitignored local profiles). That is harmless — the skill never loads `output/`, and `private/` is intentional — but do not store secrets in `private/` expecting the skill folder to hide them.
+- Because `output/` and `private/` are gitignored, a clean `git status` does not mean the skill folder is empty; run artifacts accumulate under `output/`.
 
 ## Trigger phrases
 

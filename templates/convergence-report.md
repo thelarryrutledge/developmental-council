@@ -18,7 +18,7 @@ For each recommendation include:
 - rationale
 - confidence
 - expected impact
-- source advisors — which advisor lens(es) raised it (e.g. "Robustness, Operations"), so each finding traces back to where it came from
+- source — either **From advisors** (name the lens(es) that actually raised it, e.g. "Reliability, Operations") or **From synthesis** (the Chair's own observation). Do not invent an advisor source for a synthesis insight. See the traceability rule in `core/workflow.md` Phase 2.
 
 ## Areas of Agreement
 

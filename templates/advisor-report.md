@@ -10,7 +10,7 @@ The specific lens this advisor is responsible for.
 
 ## Key Findings
 
-No more than 5.
+No more than 5. Make each finding clearly attributable to this advisor's lens so the Chair can trace it during convergence.
 
 ## Major Concerns
 
