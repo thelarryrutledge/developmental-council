@@ -46,6 +46,24 @@ independent — exactly the condition the report itself flags as required for th
 - The findings drove real changes to this repo, so the example and the project
   it reviews stay in sync.
 
+## What happened after this run
+
+This is a verbatim capture, so it reflects the skill *as it was when reviewed* —
+several of its findings have since been acted on. Most notably:
+
+- **DP1 (the independence tension) is resolved.** The report left "invest in real
+  isolation vs. soften the claim" as a human decision. It was resolved as a
+  hybrid: independence is treated as *real* on hosts that can spawn parallel
+  subagents or make separate model calls (Claude Code, Codex), and as labeled
+  *"distinct-lens"* perspectives in single-session hosts (Claude web, ChatGPT
+  chat). See the **Independence requirement** section in `SKILL.md`.
+- **Unit A is implemented.** The honest, mode-labeled independence language lives
+  in `SKILL.md`, and the Chair groupthink self-check the unit proposed is now in
+  both `chairs/systems-architect.md` and `chairs/editor-in-chief.md`.
+
+The example is kept unedited on purpose: it shows the council's real output, and
+the repo's later state shows what was done with it.
+
 > Note: this output lives under `examples/` (committed) rather than `output/`
 > (gitignored, where live runs are written). The two trees are otherwise
 > identical in shape.
