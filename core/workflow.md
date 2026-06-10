@@ -128,6 +128,14 @@ The Reviewer validates:
 
 Reviewer output should use `templates/verification-report.md`.
 
+### When the Reviewer says "Needs revision"
+
+This only applies in the full pipeline (where an Executor produced something to verify).
+
+- Run **at most one** revision cycle: hand the Reviewer's findings back to the Executor, which revises within the Chair's recommended path, then the Reviewer re-checks.
+- If the second pass still fails, **stop and escalate to the human** — report the unresolved issue and the disagreement rather than looping again. Never run unbounded revision cycles.
+- If the Reviewer's objection is really with the Chair's decision (not the execution of it), do not revise — surface it to the human as a decision point.
+
 ## Final assembly
 
 Produce:
