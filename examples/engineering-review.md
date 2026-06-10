@@ -1,5 +1,8 @@
 # Example: Engineering Review
 
+A prompt template. For a full run with real output, see
+[`walkthrough-self-review/`](walkthrough-self-review/).
+
 ```text
 Run the Developmental Council engineering package on this architecture proposal.
 

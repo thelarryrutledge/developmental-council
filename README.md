@@ -125,6 +125,13 @@ The essential requirement is Council-phase independence: advisors should not see
 - `docs/extension-guide.md`
 - `docs/migration-v2-to-v3.md`
 
+## Worked example
+
+For a complete, real end-to-end run — including the raw independent advisor
+reports, the Chair's convergence, the prepared plan, and the verification — see
+[`examples/walkthrough-self-review/`](examples/walkthrough-self-review/). In it,
+the council reviews this skill's own design.
+
 ## Lineage
 
 This project draws from the broader LLM council pattern: dispatching a prompt through multiple independent perspectives and reviewing the responses. v3 adapts that pattern into a modular decision-to-action framework with explicit divergence, convergence, execution, and verification phases.

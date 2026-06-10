@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Developmental Council Report — The Council Reviews Itself</title>
+<style>
+  :root{
+    --bg:#0a0e1a; --panel:#10162a; --panel2:#141b33; --line:#232c4a;
+    --ink:#e8ecf7; --muted:#94a0bf; --faint:#5b6486;
+    --green:#34d399; --blue:#38bdf8; --yellow:#fbbf24; --red:#f43f5e;
+    --purple:#a855f7; --teal:#2dd4bf;
+    --high:#f43f5e; --med:#fbbf24; --low:#34d399;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:radial-gradient(1200px 700px at 50% -200px,#16203c 0%,var(--bg) 60%);
+    color:var(--ink); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:48px 24px 80px}
+  header.top{text-align:center; margin-bottom:8px}
+  .kicker{letter-spacing:.22em; text-transform:uppercase; font-size:12px; color:var(--muted); font-weight:600}
+  h1{font-size:30px; line-height:1.2; margin:10px 0 6px; font-weight:700}
+  .sub{color:var(--muted); font-size:15px}
+  .meta{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:18px 0 8px}
+  .chip{background:var(--panel); border:1px solid var(--line); color:var(--muted);
+    padding:5px 12px; border-radius:999px; font-size:12.5px}
+  .chip b{color:var(--ink); font-weight:600}
+
+  section{background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:26px 28px; margin:22px 0; box-shadow:0 1px 0 rgba(255,255,255,.02) inset}
+  h2{font-size:20px; margin:0 0 4px; font-weight:700}
+  h2 .num{color:var(--muted); font-weight:600; margin-right:8px}
+  .lead{color:var(--muted); margin-top:0}
+  h3{font-size:15px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:22px 0 10px}
+  p{margin:10px 0}
+  ul{margin:10px 0; padding-left:22px}
+  li{margin:7px 0}
+  strong{color:#fff}
+  code{background:#0c1326; border:1px solid var(--line); padding:1px 6px; border-radius:6px; font-size:13px; color:#cdd6f4}
+
+  /* chart */
+  .chartcard{display:flex; flex-direction:column; align-items:center; gap:18px}
+  .chartrow{display:flex; gap:36px; align-items:center; flex-wrap:wrap; justify-content:center}
+  svg.radial{display:block}
+  .legend{display:grid; grid-template-columns:1fr 1fr; gap:10px 26px; min-width:240px}
+  .legend .item{display:flex; align-items:center; gap:10px; font-size:14px}
+  .dot{width:13px; height:13px; border-radius:4px; flex:none}
+  .legend .score{margin-left:auto; color:var(--muted); font-variant-numeric:tabular-nums}
+  .scorecard{width:100%; max-width:520px; background:var(--panel2); border:1px solid var(--line);
+    border-radius:14px; padding:16px 20px; text-align:center}
+  .scoreline{display:flex; gap:14px; align-items:baseline; justify-content:center; margin-bottom:4px}
+  .stage{color:var(--red); font-weight:700; letter-spacing:.12em; font-size:13px; text-transform:uppercase}
+  .bignum{color:var(--yellow); font-weight:800; font-size:22px; font-variant-numeric:tabular-nums}
+  .scorecard .title{font-size:18px; font-weight:700; margin:2px 0}
+  .scorecard .tag{color:var(--muted); font-size:13.5px}
+
+  /* severity + lists */
+  .tag-sev{font-size:11px; font-weight:700; padding:2px 8px; border-radius:6px; letter-spacing:.04em;
+    text-transform:uppercase; vertical-align:middle}
+  .sev-high{background:rgba(244,63,94,.16); color:#ff8597; border:1px solid rgba(244,63,94,.35)}
+  .sev-med{background:rgba(251,191,36,.14); color:#ffd57a; border:1px solid rgba(251,191,36,.32)}
+  .sev-low{background:rgba(52,211,153,.14); color:#6ee7b7; border:1px solid rgba(52,211,153,.3)}
+
+  .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin:6px 0 2px}
+  .verdict{display:inline-block; padding:6px 14px; border-radius:10px; font-weight:700; font-size:14px;
+    background:rgba(251,191,36,.14); color:#ffd57a; border:1px solid rgba(251,191,36,.3)}
+
+  .dp{border-left:3px solid var(--purple); padding:4px 0 4px 16px; margin:14px 0}
+  .dp b{color:#c9a6ff}
+
+  /* appendix cards */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin-top:6px}
+  a.card{display:block; text-decoration:none; color:inherit; background:var(--panel2);
+    border:1px solid var(--line); border-radius:12px; padding:16px 18px; transition:.15s}
+  a.card:hover{border-color:#39477a; transform:translateY(-2px)}
+  a.card .cname{font-weight:700; display:flex; align-items:center; gap:9px}
+  a.card .cmeta{color:var(--muted); font-size:13px; margin-top:6px}
+  a.card .health{float:right; color:var(--muted); font-variant-numeric:tabular-nums; font-size:13px}
+  /* modal */
+  .overlay{position:fixed; inset:0; background:rgba(4,7,15,.72); backdrop-filter:blur(3px);
+    display:none; align-items:flex-start; justify-content:center; padding:48px 18px; z-index:50; overflow:auto}
+  .overlay.open{display:flex}
+  .modal{background:var(--panel); border:1px solid var(--line); border-radius:16px; max-width:780px; width:100%;
+    box-shadow:0 30px 80px rgba(0,0,0,.5); animation:pop .16s ease-out}
+  @keyframes pop{from{transform:translateY(8px) scale(.99); opacity:.4}to{transform:none; opacity:1}}
+  .modal .bar{display:flex; align-items:center; gap:12px; padding:16px 22px; border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:var(--panel); border-radius:16px 16px 0 0}
+  .modal .bar .dot{width:13px;height:13px;border-radius:4px;flex:none}
+  .modal .bar .mt{font-weight:700; font-size:15px}
+  .modal .bar .x{margin-left:auto; cursor:pointer; color:var(--muted); border:1px solid var(--line);
+    background:var(--panel2); border-radius:8px; width:30px; height:30px; line-height:28px; text-align:center; font-size:16px}
+  .modal .bar .x:hover{color:#fff; border-color:#39477a}
+  .md{padding:8px 26px 26px}
+  .md h1{font-size:21px; margin:18px 0 4px} .md h2{font-size:15px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:22px 0 8px}
+  .md h3{font-size:14px; color:var(--muted); margin:16px 0 6px; text-transform:none; letter-spacing:0}
+  .md blockquote{border-left:3px solid var(--purple); margin:12px 0; padding:2px 0 2px 14px; color:var(--muted)}
+  .md hr{border:none; border-top:1px solid var(--line); margin:18px 0}
+  .md .rawlink{display:inline-block; margin-top:18px; color:#8fb6ff; text-decoration:none; font-size:13px}
+  .md .rawlink:hover{text-decoration:underline}
+  .footer{color:var(--muted); text-align:center; font-size:13px; margin-top:28px; font-style:italic}
+  .filelinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:8px}
+  .filelinks a{color:#8fb6ff; text-decoration:none; font-size:13px}
+  .filelinks a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="kicker">Developmental Council · Full Workflow</div>
+    <h1>The Council Reviews Itself</h1>
+    <div class="sub">A Council → Chair → Executor → Reviewer pass over the <code>developmental-council</code> v3 skill</div>
+    <div class="meta">
+      <span class="chip"><b>Domain:</b> Meta-engineering</span>
+      <span class="chip"><b>Package:</b> Engineering (adapted)</span>
+      <span class="chip"><b>Advisors:</b> 6 · independent</span>
+      <span class="chip"><b>Date:</b> 2026-06-10</span>
+    </div>
+  </header>
+
+  <!-- ===== CHART ===== -->
+  <section>
+    <h2><span class="num">◆</span>Design-Health Profile</h2>
+    <p class="lead">Each wedge is one advisor lens; bar length is the Chair's design-health estimate for that
+      dimension (longer = healthier). The shape makes the skill's character legible at a glance: a
+      <em>strong, well-built core</em> (maintainability, product) with <em>thin outer edges</em> on robustness and onboarding.</p>
+    <div class="chartcard">
+      <div class="chartrow">
+        <svg id="radial" class="radial" width="380" height="380" viewBox="0 0 400 400" role="img"
+             aria-label="Radial bar chart of design-health by advisor lens"></svg>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="scorecard">
+        <div class="scoreline">
+          <span class="stage">Stage 3</span>
+          <span class="bignum">53 / 100</span>
+        </div>
+        <div class="title">Strong Architecture, Needs Hardening</div>
+        <div class="tag">Sound four-phase design; honest-independence, onboarding clarity, and surface-area trims pending.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXEC SUMMARY ===== -->
+  <section>
+    <h2><span class="num">1</span>Executive Summary</h2>
+    <p>The four-phase architecture (Council → Chair → Executor → Reviewer) is conceptually sound, and its most
+      distinctive virtue — <strong>preserving disagreement instead of collapsing it</strong> — is real and rare.
+      The problems are not architectural; they are <strong>honesty, surface area, and onboarding</strong> problems:</p>
+    <ul>
+      <li>The headline claim of <strong>independent advisors is unverifiable and leaky</strong> when one model runs
+        everything sequentially. This run mitigated it with six separate subagents — but the skill never says that's required.</li>
+      <li><strong>"Controlled convergence" is never defined</strong>, and there is <strong>no end-to-end worked example</strong>
+        — the two things a newcomer needs most.</li>
+      <li>There is measurable <strong>dead/duplicated surface area</strong> (SKILL.md duplicated <code>core/workflow.md</code>; orphaned v2 references).</li>
+      <li>There is <strong>no lightweight path and no steering</strong> — every invocation implies the full, expensive pipeline.</li>
+    </ul>
+    <p><strong>Recommended path:</strong> a single documentation-and-cleanup pass (no architectural rewrite) — reversible,
+      high-leverage, and covering every High-severity finding. Two genuine tensions are left for <em>you</em> to decide.</p>
+  </section>
+
+  <!-- ===== CONVERGENCE ===== -->
+  <section>
+    <h2><span class="num">2</span>Controlled Convergence Report <span style="color:var(--muted);font-size:14px;font-weight:500">· Chair: Systems Architect</span></h2>
+
+    <h3>Where advisors agreed (strong signal)</h3>
+    <ul>
+      <li><strong>Independence is asserted but not guaranteed</strong> — single-model sequential execution leaks context and collapses perspectives. <span class="tag-sev sev-high">High</span></li>
+      <li><strong>The framework under-explains itself</strong> — "controlled convergence" undefined; no worked example; package layout unclear. <span class="tag-sev sev-high">High</span></li>
+      <li><strong>Dead and duplicated surface</strong> — SKILL.md ↔ <code>core/workflow.md</code>; orphaned v2 references. <span class="tag-sev sev-med">Med</span></li>
+      <li><strong>No proportionate / lightweight mode</strong> — full pipeline cost, no steering. <span class="tag-sev sev-high">High</span></li>
+      <li><strong>No loop-back semantics</strong> — undefined behavior when the Reviewer says "Needs revision." <span class="tag-sev sev-med">Med</span></li>
+    </ul>
+
+    <h3>Must-fix — the framework claims more than it can guarantee</h3>
+    <ul>
+      <li><strong>MF1 · Make independence honest.</strong> Document that true independence needs separate agent calls; describe the labeled degraded fallback; add a Chair self-check for false consensus.</li>
+      <li><strong>MF2 · Define "controlled convergence"</strong> in one sentence in README and SKILL.md.</li>
+      <li><strong>MF3 · Single source of truth</strong> — SKILL.md summarizes and defers to <code>core/workflow.md</code>. <em>(Applied.)</em></li>
+      <li><strong>MF4 · Resolve dead references</strong> — <code>private/</code> confirmed intentional; v2 migration doc marked historical. <em>(Applied.)</em></li>
+    </ul>
+
+    <h3>Should-fix — operability &amp; demonstrated value</h3>
+    <ul>
+      <li><strong>SF1 · Lightweight path + steering.</strong> Council+Chair as the implicit default; document review-only / full / reduced-advisor modes and the rough cost tradeoff.</li>
+      <li><strong>SF2 · One end-to-end worked example</strong> with abbreviated real outputs per phase.</li>
+      <li><strong>SF3 · Reviewer loop-back rule</strong> — one bounded revision cycle, then escalate to the human.</li>
+      <li><strong>SF4 · "When to use this vs. alternatives"</strong> — lead with the preserved-disagreement differentiator.</li>
+    </ul>
+
+    <h3>Tensions preserved — human decision points</h3>
+    <div class="dp"><b>DP1 · Independence: invest or soften?</b> Commit to real multi-call isolation (and require it), or downgrade the claim from "independent" to "distinct-lens." Don't keep marketing a guarantee the common path can't keep.</div>
+    <div class="dp"><b>DP2 · Pipeline scope.</b> Most value may live in Council→Chair; Executor/Reviewer are already optional. Reframe the product around the Chair, or keep the symmetric four-phase identity?</div>
+    <div class="dp"><b>DP3 · Modularity vs. overbuild.</b> Structure stays, but add no new modules until a third domain actually exists; remove only what's genuinely dead.</div>
+
+    <h3>Smallest credible next move</h3>
+    <p>One documentation + cleanup PR covering MF1–MF4 and SF1–SF4. No architecture rewrite. Fully reversible.</p>
+  </section>
+
+  <!-- ===== EXECUTOR ===== -->
+  <section>
+    <h2><span class="num">3</span>Executor Deliverable <span style="color:var(--muted);font-size:14px;font-weight:500">· Strengthening Plan</span></h2>
+    <p class="lead">Prepared as small reviewable units. MF3 and MF4 are already applied; the rest await your call (especially DP1 before Unit A).</p>
+    <ul>
+      <li><strong>Unit A · Honest independence (MF1, DP1).</strong> SKILL.md: true independence = separate subagent calls; sequential = labeled "distinct-lens." Chairs: report possible groupthink rather than manufacture consensus.</li>
+      <li><strong>Unit B · Define term + worked example (MF2, SF2).</strong> One-line definition in README/SKILL.md; add <code>examples/engineering-walkthrough.md</code>.</li>
+      <li><strong>Unit C · De-duplicate workflow (MF3).</strong> <em>Applied.</em></li>
+      <li><strong>Unit D · Dead references (MF4).</strong> <em>Applied</em> — v2 doc marked historical; <code>private/</code> kept.</li>
+      <li><strong>Unit E · Steering + lite path (SF1).</strong> Default = Council+Chair; opt-in Executor/Reviewer; reduced advisor count; one-line cost note.</li>
+      <li><strong>Unit F · Loop-back + when-to-use (SF3, SF4).</strong> Bounded one-cycle revision then human escalation; short "when to use vs. alternatives" section.</li>
+    </ul>
+  </section>
+
+  <!-- ===== REVIEWER ===== -->
+  <section>
+    <h2><span class="num">4</span>Reviewer Assessment <span style="color:var(--muted);font-size:14px;font-weight:500">· Technical Validator</span></h2>
+    <div class="pillrow"><span class="verdict">Verdict: Pass with reservations</span></div>
+    <ul>
+      <li><strong>Alignment:</strong> plan maps 1:1 to every Must-fix and Should-fix; no Chair recommendation dropped.</li>
+      <li><strong>Correctness:</strong> documentation/structure only — low blast radius, reversible, no behavioral risk.</li>
+      <li><strong>Reservation:</strong> Unit A partially pre-commits to the "soften" side of DP1 — resolve <em>invest vs. soften</em> before merging A.</li>
+      <li><strong>Reservation:</strong> Units B and F overlap; ensure the worked example reflects whatever default Unit E chooses.</li>
+      <li><strong>Consequence check:</strong> <code>private/</code> confirmed in use — correctly retained, not removed.</li>
+    </ul>
+    <p><strong>Recommendation:</strong> proceed with C/D first (done), resolve DP1 before A, then B/E/F.</p>
+  </section>
+
+  <!-- ===== APPENDICES ===== -->
+  <section>
+    <h2><span class="num">5</span>Advisor Appendix <span style="color:var(--muted);font-size:14px;font-weight:500">· independent reports</span></h2>
+    <p class="lead">Each advisor ran in isolation and never saw the others' work. Open the full report for any lens:</p>
+    <div class="cards" id="cards"></div>
+    <div class="filelinks">
+      <a href="developmental-council-report.md">↳ Markdown version of this report</a>
+    </div>
+  </section>
+
+  <div class="footer">The council recommends and prepares; it does not decide. Final authority is yours.</div>
+</div>
+
+<!-- in-browser markdown viewer -->
+<div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="bar"><span class="dot" id="m-dot"></span><span class="mt" id="m-title"></span>
+      <span class="x" id="m-close" title="Close (Esc)">×</span></div>
+    <div class="md" id="m-body"></div>
+  </div>
+</div>
+
+<!-- Embedded snapshots of the on-disk appendix markdown (canonical files live in appendices/). -->
+<script type="text/markdown" id="md-robustness">
+# Advisor Appendix — Robustness / Failure-Modes
+
+**Lens:** How the workflow fails in practice when an LLM agent executes it.
+**Design-health score (Chair estimate):** 45 / 100
+
+## Role
+Robustness and failure-modes advisor evaluating single-model execution of Council → Chair → Executor → Reviewer workflows.
+
+## Top Findings
+
+1. **False Independence: Single-Model "Parallel" Council Advisors Cannot Actually Disagree Consistently** — When a single LLM generates all advisor reports, internal coherence collapses advisor independence; the same weights and consensus-seeking tendency apply across personas. The Chair's job of identifying "meaningful disagreement" becomes impossible. **Severity: High**
+
+2. **Chair Fabricates Consensus When Disagreement Is Theater** — If advisor reports subtly agree (same model), the Chair either invents disagreements that don't exist or rationalizes away the lack of tension, producing a report that appears balanced while compressing real tradeoffs. **Severity: High**
+
+3. **Context Leakage Between Phases Due to Shared Prompt/Session State** — In single-model sequential execution, working memory carries earlier advisor outputs forward even when instructed not to; the isolation boundary becomes a suggestion, not a guarantee. **Severity: High**
+
+4. **Silent Phase Skipping: Executor and Reviewer Triggers Are Ambiguous** — "Skip if the user asked only for analysis" relies on implicit intent. "Council this architecture" could mean analysis-only or a full plan; an agent may silently skip or over-execute. **Severity: Med**
+
+5. **Chair Cannot Separate Decision from Implementation Bias** — If the Chair is the same model that becomes the Executor, it may unconsciously prefer easy-to-implement recommendations over harder-but-correct ones. **Severity: Med**
+
+6. **Executor "Fabricates Repository Context" Silent Fallback** — Despite the rule to flag missing context, a model under pressure to "complete" may hallucinate file paths/API contracts the human then trusts. **Severity: Med**
+
+7. **Reviewer Cannot Catch Executor Over-Commitment to Chair Guidance** — Same-model Reviewer may be defensive rather than adversarial, over-rating its own Executor work. **Severity: Med**
+
+8. **"Audience/Scope" Context Is Optional and Ambiguous** — Without explicit closure on who reads the report, Chair/Executor may assume the wrong reader. **Severity: Low**
+
+9. **Determinism and Reproducibility Conflict with "Independent" Generation** — Advisor order and sampling materially change downstream reports; "re-council this" can yield radically different convergence. **Severity: Low**
+
+10. **Final Report Assembly Assumes All Phases Ran** — "if any" clauses can leave orphaned Executor Briefs with no execution artifacts, confusing the reader. **Severity: Low**
+
+## Risks & Blind Spots
+- No explicit fallback *mechanism* for unavailable subagents/files — only a principle, with no way to verify isolation succeeded.
+- "Majority opinion" bias in Chair synthesis when single-model generation smooths tensions.
+- Advisor confidence scores are self-evaluated; high-confidence hallucinations get weighted heavily.
+- Executor incentivized to stay inside a wrong path with no escalation route.
+- No loop-back: linear workflow has no defined behavior when the Reviewer says "Needs revision."
+- Copy-paste fallback for packages is a large manual step easily missed.
+
+## Questions for the Human
+1. How is advisor independence validated — separate model calls or one model in sequence?
+2. What should happen if the Chair finds no meaningful disagreement?
+3. When does the Executor phase *not* run?
+4. If the Reviewer reports "Needs revision," what happens next?
+5. How are package files loaded in practice?
+6. Is there any test that advisor reports are actually independent?
+
+## One-line Summary
+The workflow's core assumption — that a single LLM can generate truly independent perspectives, identify genuine disagreement, and perform unbiased synthesis/verification — fails silently because model coherence collapses independence, context boundaries become suggestions, and phase triggers rely on ambiguous intent.
+
+</script>
+<script type="text/markdown" id="md-maintainability">
+# Advisor Appendix — Maintainability / Extensibility
+
+**Lens:** The cost of future change.
+**Design-health score (Chair estimate):** 65 / 100
+
+## Role
+Maintainability & Extensibility Advisor — module coupling, documentation drift, extension feasibility, versioning strategy, and testability of a prompt-based framework.
+
+## Top Findings
+
+1. **Functional Duplication Between SKILL.md and core/workflow.md** — SKILL.md "Required behavior" repeats the phase structure that `core/workflow.md` authoritatively defines; changes require updating both. **Severity: Med**
+
+2. **Private/ Directory Declared but Absent** — README and architecture.md reference `private/`, but it didn't exist in the public tree. *(Resolved: it is the maintainer's private theology-reviewer folder, intentionally not shipped.)* **Severity: Low**
+
+3. **No Testability Harness or Acceptance Criteria for Prompt Behavior** — No fixtures or checks verify that a Council advisor produces independent analysis or that a Chair respects "do not flatten disagreement." **Severity: Med**
+
+4. **Inconsistent Extension Guidance Across Documents** — extension-guide.md vs package-selection.md differ on whether custom packages need new core workflows. **Severity: Low**
+
+5. **Optional Cold Advisors Documented but Guidance Sparse** — Cold Onboarder / Cold Reader defined per-council, but context-isolation.md never names them or says when to run them. **Severity: Low**
+
+6. **Migration Document is Narrative, Not Executable** — reads as history, not a runbook; no pattern for future versioning/deprecation. **Severity: Low**
+
+7. **Templates Are Prescriptive But Not Auto-Populated or Validated** — markdown skeletons with no enforcement; report quality can drift. **Severity: Low**
+
+## Risks & Blind Spots
+- Coupling: the four-phase sequence is baked into SKILL.md, core/workflow.md, and every package file; adding/reordering a phase touches many modules.
+- Chair personality specificity is strong for current packages but underspecified for future chairs.
+- Missing artifact examples: examples/ holds prompt stubs, no sample outputs.
+- No versioning indicator in the markdown files.
+- Sequential fallback is strategy, not doctrine — order-dependence undocumented.
+
+## Questions for the Human
+1. Is `private/` intentional or a doc error? *(Answered: intentional.)*
+2. How should SKILL.md ↔ core/workflow.md duplication be maintained?
+3. Are cold advisors optional per-run or always included?
+4. What constitutes a breaking change to the framework, and how is it signaled?
+5. Should templates be enforced/validated, or are they purely instructional?
+
+## One-line Summary
+The modular structure is sound and well-documented, but duplication, an (apparently) missing declared directory, unenforced templates, and thin extension guidance increase the maintenance surface without a clear owner for each concern.
+
+</script>
+<script type="text/markdown" id="md-operations">
+# Advisor Appendix — Operations / Usability
+
+**Lens:** Real-world operability — cost, latency, steering, observability, degradation.
+**Design-health score (Chair estimate):** 50 / 100
+
+## Role
+Operations / Usability Advisor — token/time economics, user steering, observability, and graceful degradation of running the skill.
+
+## Top Findings
+
+1. **High token cost per invocation with unclear ROI threshold** — 6–8 advisors + Chair + Executor + Reviewer can burn 80K+ tokens before a usable artifact; no guidance toward a "lite" path. **Severity: High**
+
+2. **Advisor independence requirement creates implementation burden for sequential execution** — no explicit recipe, reference implementation, or leakage-prevention guidance for the no-parallelism case. **Severity: High**
+
+3. **Output volume and digestibility risk** — Exec summary + CCR + Executor + Reviewer + 7-advisor appendix easily exceeds 8–12K tokens with no enforced curation. **Severity: High**
+
+4. **Weak affordance for steering and phase skipping** — no lightweight syntax for "Council + Chair only" or "3 advisors not 7"; the trigger surface is binary. **Severity: High**
+
+5. **Poor observability of which phase produced what finding** — no traceability from a final recommendation back to the advisor that raised it. **Severity: Med**
+
+6. **Graceful degradation gaps for missing tools** — assumes file output; no prescribed fallback UX when files can't be written. **Severity: Med**
+
+7. **Onboarding friction for first-time users** — triggers, four phases, packages, councils/chairs/executors/reviewers, isolation rules, templates — a lot to absorb. **Severity: Med**
+
+8. **Package selection is implicit, not explicit** — the skill guesses the domain with no validation step. **Severity: Low**
+
+## Risks & Blind Spots
+- Latency surprise: a time-sensitive ask triggers a long multi-phase run with no upfront estimate.
+- Token-accounting opacity: no per-phase usage estimate.
+- Silent advisor conflicts: template doesn't force the Chair to surface direct contradictions.
+- Executor mission creep with no rollback path when the Chair's path proves infeasible.
+- Context-isolation auditing: no mechanism prevents later advisors inferring earlier findings in sequential mode.
+- Reviewer scope creep can re-open the Chair's decision, creating a loop.
+
+## Questions for the Human
+1. Expected use frequency and acceptable latency for a full run?
+2. How should a phase-skipping request be honored?
+3. On sequential platforms, how strict is independence?
+4. Who curates the appendix down to the most important advisors?
+5. When the Executor hits a blocker, loop to Chair or escalate to human?
+
+## One-line Summary
+A well-architected multi-phase framework that operationally lacks affordances for lightweight usage, transparent cost/latency, observable phase attribution, and graceful degradation — prone to overuse friction and hidden token costs for casual invocations.
+
+</script>
+<script type="text/markdown" id="md-product">
+# Advisor Appendix — Product / Purpose
+
+**Lens:** Does this solve a real problem better than alternatives, and for whom?
+**Design-health score (Chair estimate):** 62 / 100
+
+## Role
+Product advisor assessing whether the skill solves a real user problem better than alternatives, and for whom.
+
+## Top Findings
+
+1. **Problem solved: Structured divergence-before-convergence for complex judgment** — forcing divergence early prevents premature consensus; the Council isolation rule is hard to reproduce ad-hoc. **Severity: High (strength)**
+
+2. **Modularity is overbuilt relative to current deployment** — two packages plus an extensibility system, but only two domains; ceremony can feel heavy for a one-off user. **Severity: Med**
+
+3. **Job-to-be-done clarity gap: when is this better than "Claude, poke holes in this?"** — no concrete expectation of outcome difference (more insightful? longer? less prescriptive?). **Severity: Med**
+
+4. **Human authority framing is protective but reads like a compliance disclaimer** — doesn't answer the user's real question, "should I follow the recommendation?" **Severity: Low**
+
+5. **The Executor–Reviewer loop may not be the real value; the Chair is** — symmetric four-phase framing over-suggests ceremony; ~80% of value may be the synthesis. **Severity: Med**
+
+6. **Differentiation vs. existing multi-agent review patterns is underspecified** — no clear signal for when to choose this over `code-review` / `plan_review` / parallel review workflows. **Severity: Med**
+
+7. **The "preserved disagreement" philosophy is distinctive and underrated** — preserving tension instead of collapsing it is the genuine differentiator and is buried as a philosophical aside. **Severity: High (strength)**
+
+## Risks & Blind Spots
+- Overestimation of Council value: no evidence isolated advisors beat advisors who see each other.
+- Downstream skew: expensive verification on outputs the user already doubts.
+- No cost-vs-value guidance for the ~4× token cost.
+- Writing vs engineering workflows differ (iterative vs once-through) but packages aren't tailored to that.
+- "Controlled convergence" is jargon used 20+ times but never defined.
+
+## Questions for the Human
+1. What's the primary problem this solves that existing review skills don't?
+2. Is the Chair the real blocker users face — and should the product center on it?
+3. Who is the target user: solo thinker or team facilitator?
+4. How should this compete with "just ask Claude to poke holes"?
+5. Expected token cost, and when is it worth it?
+
+## One-line Summary
+Solves a real but narrow problem (preserving disagreement + forcing independent perspectives) with a four-phase framework that reads overengineered for its core value, lacks clarity on when to use it vs. alternatives, and positions its main strength as an aside rather than the lead.
+
+</script>
+<script type="text/markdown" id="md-complexity">
+# Advisor Appendix — Complexity / Overbuild
+
+**Lens:** Complexity cost and speculative generality.
+**Design-health score (Chair estimate):** 55 / 100
+
+## Role
+Complexity & Overbuilding Advisor — speculative generality, surface-area cost, and whether modular decomposition is justified by actual usage.
+
+## Top Findings
+
+1. **24 markdown files for two domains with near-identical structure, no active third domain** — granular modularization creates ~8× the surface area of a monolithic approach without evidence it's earning its cost. **Severity: Med**
+
+2. **v2→v3 scope expansion (added Chair + Executor + Reviewer) without user signal that divergence-only was insufficient** — a 4× workflow expansion justified by posited future value, not documented need. **Severity: High**
+
+3. **Context Isolation Matrix duplicates logic already in workflow.md and profile files** — a redundancy liability: changes must update three places. **Severity: Low**
+
+4. **Package Selection occupies a full file for what could be 4–5 inline bullets** — routing rule, not reusable knowledge. **Severity: Low**
+
+5. **Three near-identical output templates with minimal domain differentiation** — could be one parametric template. **Severity: Low**
+
+6. **Chair and Executor files are personality profiles, not reusable logic** — stored as separate files implying reuse potential they don't have. **Severity: Med**
+
+7. **Extension Guide promises easy domains but requires creating 5 new files (~2,000 words)** — the modular story works at design level but is expensive per domain, with no third domain planned. **Severity: Med**
+
+8. **Migration guide exists but v2 is not in the repo** — an artifact without context. **Severity: Low**
+
+## Risks & Blind Spots
+- Premature modularization hypothesis untested: if most use cases need only Council + Chair, Executor + Reviewer are speculative.
+- File-I/O assumptions embedded: modularity only pays off when the host can dynamically load files.
+- No usage metrics on how often Executor/Reviewer actually run.
+- Template superficiality suggests one generic template would suffice.
+- Advisor profiles are not composable across councils.
+
+## Questions for the Human
+1. Has a third domain package been requested or planned?
+2. What fraction of uses end at Chair vs. need Executor + Reviewer?
+3. In practice, are files dynamically loaded or pasted (making the structure cosmetic)?
+4. Could core/ be one file with four labeled sections?
+5. Was the v2→v3 jump driven by user feedback or architectural evolution?
+
+## One-line Summary
+24 files implementing a four-phase workflow across two domains, structured for extension but with no third domain deployed and no evidence users need the Executor + Reviewer complexity beyond the core divergence–convergence loop.
+
+</script>
+<script type="text/markdown" id="md-cold-onboarder">
+# Advisor Appendix — Cold Onboarder
+
+**Lens:** The onboarding cliff. Receives only README.md + SKILL.md as a first-timer.
+**Design-health score (Chair estimate):** 42 / 100
+
+## Role
+Cold Onboarder — never seen the project before; reads only what a newcomer encounters first (README, SKILL.md, directory structure).
+
+## Top Findings
+
+1. **Jargon wall with no definition: "controlled convergence"** — appears in the title, description, three filenames, and the workflow, but is never explained. It's the core value proposition and the second word in the title. **Severity: High**
+
+2. **No worked example end-to-end in the primary docs** — examples/ holds bare prompt stubs; a newcomer never sees what the final output looks like or how long it takes. **Severity: High**
+
+3. **"Package" is overloaded and vaguely explained** — not defined until core/package-selection.md; unclear why packages/ vs councils/ vs executors/ are separate. **Severity: High**
+
+4. **Independence requirement is critical but buried** — a major operational constraint living in one paragraph; the precise matrix is only in docs/. **Severity: Med**
+
+5. **"Human authority" stated but implications left to the user** — templates say "Recommended Path Forward" with no framing on whether that's a suggestion or a direction. **Severity: Med**
+
+6. **No decision tree for when NOT to run it** — anti-patterns listed, but "is my choice low-stakes?" is subjective with no concrete rubric. **Severity: Low**
+
+7. **"Platform compatibility" claims neutrality but setup is implicit** — no diagnostic for which execution mode (parallel subagents vs sequential) you're in. **Severity: Med**
+
+## Risks & Blind Spots
+- Missing conceptual diagram of context flow (what each stage sees vs. doesn't).
+- No failure-mode / error-recovery docs (deadlocked council, insufficient Executor context).
+- "Outsider-style advisor" referenced once in a table, never explained in the onboarding path.
+- Templates are minimal outlines; combined with no worked example, depth/length expectations are unclear.
+- Migration doc is hard to find and not linked from README.
+
+## Questions for the Human
+1. Who is the primary onboarding target (Claude Code users, vanilla-Claude pasters, agent builders, all)?
+2. Is "controlled convergence" a committed term or open to a clearer name?
+3. Should examples/ contain fully worked examples with real outputs?
+4. Would bundling each domain's files into one package subdirectory be clearer?
+5. Should there be a pre-concatenated single-file version for vanilla Claude?
+
+## One-line Summary
+The architecture is sound, but the onboarding path assumes too much: "controlled convergence" is unexplained, there's no end-to-end worked example, the package/file structure is unclear, and the independence requirement is buried — leaving a newcomer unsure how to invoke it, what to expect, or whether they need it.
+
+</script>
+
+<script>
+const DIMS = [
+  {key:"Robustness",    mdid:"md-robustness",     score:45, color:"#f43f5e", file:"appendices/01-robustness.md",     lens:"How the workflow fails in execution", sev:"High"},
+  {key:"Maintainability",mdid:"md-maintainability",score:65, color:"#34d399", file:"appendices/02-maintainability.md", lens:"Cost of future change", sev:"Med"},
+  {key:"Operations",    mdid:"md-operations",     score:50, color:"#38bdf8", file:"appendices/03-operations.md",     lens:"Cost, latency, steering, observability", sev:"High"},
+  {key:"Product",       mdid:"md-product",        score:62, color:"#fbbf24", file:"appendices/04-product.md",        lens:"Does it solve a real problem, for whom", sev:"High"},
+  {key:"Complexity",    mdid:"md-complexity",     score:55, color:"#a855f7", file:"appendices/05-complexity.md",     lens:"Overbuild & speculative generality", sev:"High"},
+  {key:"Onboarding",    mdid:"md-cold-onboarder", score:42, color:"#2dd4bf", file:"appendices/06-cold-onboarder.md", lens:"The cold-start cliff", sev:"High"},
+];
+
+// ---- minimal markdown renderer (headings, bold, em, code, lists, hr, blockquote) ----
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function inline(s){
+  return esc(s)
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g,'<em>$1</em>');
+}
+function renderMarkdown(src){
+  const lines = src.replace(/\r/g,"").split("\n");
+  let html="", list=null;
+  const closeList=()=>{ if(list){ html+=`</${list}>`; list=null; } };
+  for(let raw of lines){
+    const line=raw.replace(/\s+$/,"");
+    let m;
+    if(/^\s*$/.test(line)){ closeList(); continue; }
+    if(/^---+$/.test(line)){ closeList(); html+="<hr>"; continue; }
+    if((m=line.match(/^(#{1,6})\s+(.*)$/))){ closeList(); const n=m[1].length; html+=`<h${n}>${inline(m[2])}</h${n}>`; continue; }
+    if((m=line.match(/^>\s?(.*)$/))){ closeList(); html+=`<blockquote>${inline(m[1])}</blockquote>`; continue; }
+    if((m=line.match(/^\s*[-*]\s+(.*)$/))){ if(list!=="ul"){closeList(); list="ul"; html+="<ul>";} html+=`<li>${inline(m[1])}</li>`; continue; }
+    if((m=line.match(/^\s*\d+\.\s+(.*)$/))){ if(list!=="ol"){closeList(); list="ol"; html+="<ol>";} html+=`<li>${inline(m[1])}</li>`; continue; }
+    closeList(); html+=`<p>${inline(line)}</p>`;
+  }
+  closeList();
+  return html;
+}
+
+const overlay=document.getElementById("overlay");
+function openAppendix(d){
+  const node=document.getElementById(d.mdid);
+  const md = node ? node.textContent.replace(/^\n/,"") : "_Appendix content not embedded._";
+  document.getElementById("m-dot").style.background=d.color;
+  document.getElementById("m-title").textContent=`${d.key} — full advisor report`;
+  document.getElementById("m-body").innerHTML = renderMarkdown(md)
+    + `<a class="rawlink" href="${d.file}">↳ view / edit the raw markdown file on disk</a>`;
+  overlay.classList.add("open"); document.body.style.overflow="hidden";
+}
+function closeAppendix(){ overlay.classList.remove("open"); document.body.style.overflow=""; }
+document.getElementById("m-close").onclick=closeAppendix;
+overlay.addEventListener("click", e=>{ if(e.target===overlay) closeAppendix(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeAppendix(); });
+
+const CX=200, CY=200, INNER=66, MAXOUT=172, GAP=5;
+const SVGNS="http://www.w3.org/2000/svg";
+
+function pt(r, deg){ const a=(deg-90)*Math.PI/180; return [CX + r*Math.cos(a), CY + r*Math.sin(a)]; }
+function P(p){ return p[0].toFixed(2)+" "+p[1].toFixed(2); }
+
+function sector(a0, a1, ri, ro){
+  const p1=pt(ro,a0), p2=pt(ro,a1), p3=pt(ri,a1), p4=pt(ri,a0);
+  return `M ${P(p1)} A ${ro} ${ro} 0 0 1 ${P(p2)} L ${P(p3)} A ${ri} ${ri} 0 0 0 ${P(p4)} Z`;
+}
+
+function el(tag, attrs){ const e=document.createElementNS(SVGNS, tag); for(const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+
+const svg = document.getElementById("radial");
+
+// grid rings
+[25,50,75,100].forEach(v=>{
+  const r = INNER + (v/100)*(MAXOUT-INNER);
+  svg.appendChild(el("circle",{cx:CX,cy:CY,r:r,fill:"none",stroke:"#27314f","stroke-width":1,"stroke-dasharray":"2 4"}));
+});
+// outer reference + hub
+svg.appendChild(el("circle",{cx:CX,cy:CY,r:MAXOUT+6,fill:"none",stroke:"#1c2440","stroke-width":1}));
+
+const seg = 360/DIMS.length;
+DIMS.forEach((d,i)=>{
+  const a0 = i*seg + GAP/2;
+  const a1 = (i+1)*seg - GAP/2;
+  const ro = INNER + (d.score/100)*(MAXOUT-INNER);
+  // faint full-length track
+  svg.appendChild(el("path",{d:sector(a0,a1,INNER,MAXOUT),fill:d.color,opacity:0.07}));
+  // value wedge
+  const w = el("path",{d:sector(a0,a1,INNER,ro),fill:d.color,opacity:0.92});
+  w.appendChild(el("title",{}));
+  w.lastChild.textContent = `${d.key}: ${d.score}/100`;
+  svg.appendChild(w);
+});
+// center hole
+svg.appendChild(el("circle",{cx:CX,cy:CY,r:INNER-2,fill:"#0a0e1a",stroke:"#27314f","stroke-width":1}));
+const t1=el("text",{x:CX,y:CY-6,"text-anchor":"middle",fill:"#e8ecf7","font-size":"26","font-weight":"800"}); t1.textContent="53"; svg.appendChild(t1);
+const t2=el("text",{x:CX,y:CY+16,"text-anchor":"middle",fill:"#94a0bf","font-size":"11","letter-spacing":"1"}); t2.textContent="/ 100"; svg.appendChild(t2);
+
+// legend
+const legend = document.getElementById("legend");
+DIMS.forEach(d=>{
+  const row=document.createElement("div"); row.className="item";
+  row.innerHTML = `<span class="dot" style="background:${d.color}"></span><span>${d.key}</span><span class="score">${d.score}</span>`;
+  legend.appendChild(row);
+});
+
+// appendix cards
+const cards = document.getElementById("cards");
+const sevClass = {High:"sev-high",Med:"sev-med",Low:"sev-low"};
+DIMS.forEach((d,i)=>{
+  const a=document.createElement("a"); a.className="card"; a.href=d.file;
+  a.innerHTML = `<div class="cname"><span class="dot" style="background:${d.color}"></span>${String(i+1).padStart(2,"0")} · ${d.key}
+      <span class="health">${d.score}/100</span></div>
+    <div class="cmeta">${d.lens}<br><span class="tag-sev ${sevClass[d.sev]}">top sev ${d.sev}</span></div>`;
+  a.addEventListener("click", e=>{ if(e.metaKey||e.ctrlKey||e.button===1) return; e.preventDefault(); openAppendix(d); });
+  cards.appendChild(a);
+});
+</script>
+</body>
+</html>

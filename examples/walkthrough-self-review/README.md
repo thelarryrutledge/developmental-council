@@ -1,0 +1,51 @@
+# Worked Example — The Council Reviews Itself
+
+A real, end-to-end run of the Developmental Council, captured verbatim from its
+first execution. The subject under review is the `developmental-council` v3 skill
+*itself*, so this doubles as a demonstration and as a self-applied audit.
+
+Use it to see what each phase actually produces before you run your own.
+
+## The brief that started the run
+
+```text
+Run the Developmental Council engineering package on this skill's own design.
+
+Subject: the developmental-council v3 skill (its architecture and docs).
+Goal: find honesty, surface-area, and onboarding problems.
+
+Output requested:
+- Controlled Convergence Report
+- a strengthening plan (prepared, not applied)
+- technical validation of that plan
+```
+
+## How it ran
+
+Council (6 independent advisors) → Chair → Executor → Reviewer.
+
+Each advisor ran as a separate subagent so the perspectives were genuinely
+independent — exactly the condition the report itself flags as required for the
+"independence" claim to hold.
+
+## How to read these files
+
+| File | Phase | What it shows |
+|------|-------|---------------|
+| [`report.md`](report.md) | All | The assembled final report: executive summary, Controlled Convergence Report (Chair), strengthening plan (Executor), validation (Reviewer). Start here. |
+| [`report.html`](report.html) | — | The same report rendered as the styled HTML artifact the skill emits when file output is available. |
+| [`appendices/`](appendices) | Council | The six raw, independent advisor reports — Robustness, Maintainability, Operations, Product, Complexity, Cold Onboarder — before any synthesis. This is the "preserved disagreement" the Chair works from. |
+
+## Why this example is worth keeping
+
+- It is a complete trace: divergence (appendices) → convergence (Chair) →
+  prepared action (Executor) → verification (Reviewer).
+- The Chair preserves three unresolved tensions as explicit human decision
+  points (DP1–DP3) rather than collapsing them — the framework's core behavior,
+  shown rather than described.
+- The findings drove real changes to this repo, so the example and the project
+  it reviews stay in sync.
+
+> Note: this output lives under `examples/` (committed) rather than `output/`
+> (gitignored, where live runs are written). The two trees are otherwise
+> identical in shape.
