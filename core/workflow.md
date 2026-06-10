@@ -1,6 +1,6 @@
 # Core Workflow
 
-Developmental Council's core is two phases — the default:
+Counterpoint's core is two phases — the default:
 
 ```text
 Council → Chair          (default — the product)
@@ -192,7 +192,7 @@ Begin the markdown report with a structured metadata block (YAML frontmatter) so
 
 ```yaml
 ---
-developmental_council_run:
+counterpoint_run:
   date: YYYY-MM-DD
   package: engineering        # or writing, or a custom package name
   scope: council+chair        # council-only | council+chair | full-pipeline

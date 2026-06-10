@@ -1,6 +1,6 @@
 # Architecture
 
-Developmental Council v3 is a modular decision-to-action framework.
+Counterpoint v3 is a modular decision-to-action framework.
 
 The repo keeps `SKILL.md` as the platform-neutral entry point, but the behavior now lives in composable modules:
 

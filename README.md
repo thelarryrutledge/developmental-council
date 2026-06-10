@@ -1,4 +1,4 @@
-# Developmental Council
+# Counterpoint
 
 A platform-neutral Agent Skill for structured multi-perspective review and controlled convergence.
 
@@ -114,7 +114,7 @@ Components:
 Use this directory as the skill folder:
 
 ```text
-developmental-council/
+counterpoint/
   SKILL.md
   core/
   packages/
@@ -134,13 +134,13 @@ If a platform cannot dynamically read the supporting files, paste the relevant p
 To keep the installed skill in sync with a working copy, symlink it to the repo instead of copying:
 
 ```sh
-ln -s /path/to/developmental-council ~/.claude/skills/developmental-council
+ln -s /path/to/counterpoint ~/.claude/skills/counterpoint
 ```
 
 Two things to know when you do this:
 
 - The skill folder then also exposes `private/` (gitignored local profiles). Do not store secrets there expecting the skill folder to hide them.
-- In *this* repo, `council-reports/` is committed — those runs are real councils of this codebase, kept as worked examples. In *other* projects the skill writes its reports to `council-reports/` too; commit or gitignore them there as you prefer.
+- In *this* repo, `counterpoint-reports/` is committed — those runs are real councils of this codebase, kept as worked examples. In *other* projects the skill writes its reports to `counterpoint-reports/` too; commit or gitignore them there as you prefer.
 
 ## Trigger phrases
 

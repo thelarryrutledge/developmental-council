@@ -1,7 +1,7 @@
 # Example: Writing Review
 
 ```text
-Run the Developmental Council writing package on this chapter.
+Run the Counterpoint writing package on this chapter.
 
 Goal: strengthen the argument and improve reader clarity without losing my voice.
 

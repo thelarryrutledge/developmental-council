@@ -13,7 +13,7 @@ Observability, run repeatability, cost steerability, and output-fallback behavio
 1. **High — YAML metadata block is inconsistently applied.** Historical runs vary (an earlier run lacks the block entirely; a later one has it). Without 100% compliance, cross-run analysis is unreliable. *(Note: the earliest run predates the metadata requirement.)*
 2. **High — Metadata lacks a machine-actionable outcome/status field.** It records scope/mode/count/advisors/date/package but nothing about success, phase reached, verification result, or token cost — so dashboards can't answer "how many passed?" or "average cost?"
 3. **High — execution_mode is self-reported with no verification checkpoint.** A single-session run could falsely claim multi-agent and be indistinguishable.
-4. **Med — File-naming spec-vs-reality mismatch.** Spec says `developmental-council-report-[timestamp].md`; reality is a fixed name inside a `[timestamp]/` dir. Reversible, but a pattern problem for programmatic queries.
+4. **Med — File-naming spec-vs-reality mismatch.** Spec says `counterpoint-report-[timestamp].md`; reality is a fixed name inside a `[timestamp]/` dir. Reversible, but a pattern problem for programmatic queries.
 5. **Med — Partial-output fallback is documented but not actionable.** "Fall back to chat-only when unavailable" doesn't define what counts as unavailable, whether to write markdown-only, or how to record the degradation.
 
 ## Major Concerns

@@ -1,7 +1,7 @@
 # Worked Example — The Council Reviews Itself
 
-A real, end-to-end run of the Developmental Council, captured verbatim from its
-first execution. The subject under review is the `developmental-council` v3 skill
+A real, end-to-end run of the Counterpoint, captured verbatim from its
+first execution. The subject under review is the `counterpoint` v3 skill
 *itself*, so this doubles as a demonstration and as a self-applied audit.
 
 Use it to see what each phase actually produces before you run your own.
@@ -9,9 +9,9 @@ Use it to see what each phase actually produces before you run your own.
 ## The brief that started the run
 
 ```text
-Run the Developmental Council engineering package on this skill's own design.
+Run the Counterpoint engineering package on this skill's own design.
 
-Subject: the developmental-council v3 skill (its architecture and docs).
+Subject: the counterpoint v3 skill (its architecture and docs).
 Goal: find honesty, surface-area, and onboarding problems.
 
 Output requested:
@@ -66,4 +66,4 @@ the repo's later state shows what was done with it.
 
 > Note: this is the curated, annotated copy of the first run, kept under
 > `examples/`. The raw outputs of every run (including this one) live under
-> `council-reports/`, which is also committed in this repo.
+> `counterpoint-reports/`, which is also committed in this repo.

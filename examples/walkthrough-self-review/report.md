@@ -1,6 +1,6 @@
-# Developmental Council Report — The Council Reviews Itself
+# Counterpoint Report — The Council Reviews Itself
 
-**Subject:** `developmental-council` v3 skill (its own design/architecture)
+**Subject:** `counterpoint` v3 skill (its own design/architecture)
 **Domain:** Meta-engineering / prompt-orchestration framework
 **Package:** Engineering (advisor lenses adapted to a prompt framework)
 **Date:** 2026-06-10

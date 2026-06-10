@@ -1,5 +1,5 @@
 ---
-developmental_council_run:
+counterpoint_run:
   date: 2026-06-10
   package: engineering
   scope: council+chair
@@ -10,9 +10,9 @@ developmental_council_run:
   reduction_reason: targeted DP-A (positioning/identity) verification
 ---
 
-# Developmental Council Report — DP-A Closure Verification
+# Counterpoint Report — DP-A Closure Verification
 
-**Subject:** `developmental-council` v3 entry points after the Option-A restructure
+**Subject:** `counterpoint` v3 entry points after the Option-A restructure
 **Package:** Engineering · **Chair:** Systems Architect · **Scope:** Council + Chair (default)
 **Execution mode:** True multi-agent — 3 independent subagents (reduced set: the lenses that kept raising DP-A)
 **Question under test:** Is the positioning/identity contradiction (four symmetric phases vs. Council→Chair default) now CLOSED?

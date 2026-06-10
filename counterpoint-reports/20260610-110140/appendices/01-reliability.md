@@ -4,7 +4,7 @@
 Reliability / Failure-Modes Advisor
 
 ## Focus
-Identifying execution failures in the recently revised developmental-council skill: scope ambiguity, loop-back state transitions, traceability fabrication, independence self-labeling, and silent under-execution.
+Identifying execution failures in the recently revised counterpoint skill: scope ambiguity, loop-back state transitions, traceability fabrication, independence self-labeling, and silent under-execution.
 
 ## Key Findings
 

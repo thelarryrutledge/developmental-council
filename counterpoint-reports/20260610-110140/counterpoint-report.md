@@ -1,5 +1,5 @@
 ---
-developmental_council_run:
+counterpoint_run:
   date: 2026-06-10
   package: engineering
   scope: council+chair
@@ -8,9 +8,9 @@ developmental_council_run:
   advisors: [reliability, maintainability, operations, cost-complexity, product, cold-onboarder]
 ---
 
-# Developmental Council Report — Re-Council of the Skill (post-cleanup)
+# Counterpoint Report — Re-Council of the Skill (post-cleanup)
 
-**Subject:** `developmental-council` v3, after the honesty/onboarding/cleanup pass
+**Subject:** `counterpoint` v3, after the honesty/onboarding/cleanup pass
 **Domain:** Meta-engineering / prompt-orchestration framework
 **Package:** Engineering
 **Chair:** Systems Architect

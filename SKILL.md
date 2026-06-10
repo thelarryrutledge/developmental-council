@@ -1,11 +1,11 @@
 ---
-name: developmental-council
+name: counterpoint
 description: Run a substantive idea, draft, design, architecture, strategy, or decision through a modular Council → Chair → Executor → Reviewer workflow. Use when the user asks to council, develop, pressure-test, stress-test, poke holes in, strengthen, review, synthesize, create an implementation plan, or turn a complex set of perspectives into controlled convergence and actionable artifacts. Do not use for simple factual lookup, pure creation with no review need, trivial yes/no choices, or low-stakes decisions with no meaningful tradeoff.
 ---
 
-# Developmental Council
+# Counterpoint
 
-Developmental Council is a platform-neutral agent skill for structured multi-perspective review and controlled convergence.
+Counterpoint is a platform-neutral agent skill for structured multi-perspective review and controlled convergence.
 
 *Controlled convergence* means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — never collapsing disagreement into a single false consensus. (`core/workflow.md` Phase 2 is the canonical definition.)
 
@@ -125,11 +125,11 @@ The user should be able to act from the Controlled Convergence Report without re
 
 When file output is available, **produce the report as files by default** — do not wait to be asked. A run's deliverable is the artifact, not a chat dump; keep the chat reply to a concise summary plus next steps that point at the file. Create:
 
-- `developmental-council-report-[timestamp].md` — always; begins with a YAML run-metadata block (see `core/workflow.md` → Final assembly) so runs can be analyzed across time
-- `developmental-council-report-[timestamp].html` — the styled artifact (design-health chart, severity tags, and an in-browser viewer for the advisor appendices); produce it by default when file output is available
+- `counterpoint-report-[timestamp].md` — always; begins with a YAML run-metadata block (see `core/workflow.md` → Final assembly) so runs can be analyzed across time
+- `counterpoint-report-[timestamp].html` — the styled artifact (design-health chart, severity tags, and an in-browser viewer for the advisor appendices); produce it by default when file output is available
 - `appendices/` — one markdown file per advisor report
 
-Write these under a `council-reports/[timestamp]/` directory in the working project (not `output/`, which many projects already use for their own build artifacts). Only fall back to chat-only output when file output is genuinely unavailable.
+Write these under a `counterpoint-reports/[timestamp]/` directory in the working project (not `output/`, which many projects already use for their own build artifacts). Only fall back to chat-only output when file output is genuinely unavailable.
 
 ## Human authority
 

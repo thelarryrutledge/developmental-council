@@ -2,7 +2,7 @@
 council-report-*.html
 council-transcript-*.md
 
-# Note: council-reports/ is intentionally tracked — the runs there are real
+# Note: counterpoint-reports/ is intentionally tracked — the runs there are real
 # council reviews of this repo, kept as worked examples.
 
 # Private profiles — kept local, never published

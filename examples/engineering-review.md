@@ -4,7 +4,7 @@ A prompt template. For a full run with real output, see
 [`walkthrough-self-review/`](walkthrough-self-review/).
 
 ```text
-Run the Developmental Council engineering package on this architecture proposal.
+Run the Counterpoint engineering package on this architecture proposal.
 
 Goal: identify reliability, maintainability, security, performance, and operational risks.
 

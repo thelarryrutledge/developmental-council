@@ -4,7 +4,7 @@
 
 ## What changed
 
-The original Developmental Council was intentionally non-convergent. It surfaced perspectives, disagreements, and gaps without producing a final verdict.
+The original Counterpoint was intentionally non-convergent. It surfaced perspectives, disagreements, and gaps without producing a final verdict.
 
 v3 preserves that divergent Council phase but adds:
 

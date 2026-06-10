@@ -1,5 +1,5 @@
 ---
-developmental_council_run:
+counterpoint_run:
   date: 2026-06-10
   package: engineering
   scope: council+chair
@@ -8,9 +8,9 @@ developmental_council_run:
   advisors: [reliability, maintainability, operations, cost-complexity, product, cold-onboarder]
 ---
 
-# Developmental Council Report — Third Re-Council of the Skill
+# Counterpoint Report — Third Re-Council of the Skill
 
-**Subject:** `developmental-council` v3, after the second cleanup pass (consistency, run-metadata, advisor selection, loop-back classification, how-to-invoke, file-output-by-default)
+**Subject:** `counterpoint` v3, after the second cleanup pass (consistency, run-metadata, advisor selection, loop-back classification, how-to-invoke, file-output-by-default)
 **Domain:** Meta-engineering / prompt-orchestration framework
 **Package:** Engineering · **Chair:** Systems Architect · **Scope:** Council + Chair (default)
 **Execution mode:** True multi-agent — 6 independent subagents, advisor-sourced design-health scores.
