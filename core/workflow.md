@@ -8,6 +8,22 @@ Council → Chair → Executor → Reviewer
 
 The core workflow is domain-neutral. Domain-specific behavior lives in packages, councils, chairs, executors, and reviewers.
 
+## Scope — how much of the pipeline to run
+
+The full four-phase pipeline is the *maximum*, not the default. Most runs should stop at the Chair.
+
+| Scope | Phases run | When to use |
+|---|---|---|
+| **Default** | Council → Chair | The implicit default. Use when the user wants perspectives and a converged recommendation: "council this", "what am I missing?", "pressure-test this". |
+| **Full pipeline** | Council → Chair → Executor → Reviewer | Use only when the user asks for artifacts, a plan, code, revisions, or "the whole thing": "turn this into a plan", "run the full council", "and implement it". |
+| **Review only** | Council | Use when the user explicitly wants raw perspectives without convergence. |
+
+The Executor and Reviewer roughly double the work and token cost of a run, which is why they are opt-in. Add them when the user wants something built or verified — not by default.
+
+Advisor count is also adjustable: run the package's full council by default, but honor an explicit request for a reduced set (e.g. "just the robustness and operations lenses") to keep a run cheap and fast.
+
+If scope is ambiguous, assume **Default** (Council → Chair) and offer to continue to the Executor/Reviewer rather than running them unprompted.
+
 ## Phase 0 — Frame the brief
 
 Create a neutral brief before running any advisor.

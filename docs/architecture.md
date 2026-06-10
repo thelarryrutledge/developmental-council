@@ -12,7 +12,6 @@ chairs/        convergence personalities
 executors/     artifact generators
 reviewers/     verification roles
 templates/     report formats
-private/       non-public or personal profiles
 ```
 
 ## Why this structure

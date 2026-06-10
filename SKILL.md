@@ -7,6 +7,8 @@ description: Run a substantive idea, draft, design, architecture, strategy, or d
 
 Developmental Council is a platform-neutral agent skill for structured multi-perspective review and controlled convergence.
 
+*Controlled convergence* means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — never collapsing disagreement into a single false consensus.
+
 The v3 architecture separates four responsibilities:
 
 1. **Council** — generates independent perspectives.

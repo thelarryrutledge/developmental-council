@@ -15,6 +15,8 @@ Council → Chair → Executor → Reviewer
 
 The human retains final authority.
 
+**Controlled convergence** means ranking and reconciling divergent perspectives into prioritized, decision-ready guidance while explicitly preserving the tradeoffs that remain unresolved — rather than collapsing disagreement into a single false consensus.
+
 ## What changed in v3
 
 Earlier versions focused on developmental critique without collapsing to a verdict. v3 keeps that divergent review step but adds a synthesis and action layer.
@@ -45,7 +47,6 @@ templates/                output formats
 docs/                     architecture and extension docs
 examples/                 example prompts and presets
 platforms/                platform-specific notes
-private/                  optional private profiles not intended for public distribution
 ```
 
 ## Built-in public packages
@@ -123,7 +124,7 @@ The essential requirement is Council-phase independence: advisors should not see
 
 - `docs/architecture.md`
 - `docs/extension-guide.md`
-- `docs/migration-v2-to-v3.md`
+- `docs/migration-v2-to-v3.md` (historical — how v2 became v3)
 
 ## Worked example
 
