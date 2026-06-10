@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/counterpoint-logo.png" alt="Counterpoint logo" width="200">
+</p>
+
 # Counterpoint
 
 A platform-neutral Agent Skill for structured multi-perspective review and controlled convergence.
