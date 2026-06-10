@@ -64,6 +64,6 @@ several of its findings have since been acted on. Most notably:
 The example is kept unedited on purpose: it shows the council's real output, and
 the repo's later state shows what was done with it.
 
-> Note: this output lives under `examples/` (committed) rather than `council-reports/`
-> (gitignored, where live runs are written). The two trees are otherwise
-> identical in shape.
+> Note: this is the curated, annotated copy of the first run, kept under
+> `examples/`. The raw outputs of every run (including this one) live under
+> `council-reports/`, which is also committed in this repo.

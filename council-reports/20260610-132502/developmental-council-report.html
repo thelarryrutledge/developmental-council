@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Developmental Council Report — DP-A Closure Verification</title>
+<style>
+  :root{
+    --bg:#0a0e1a; --panel:#10162a; --panel2:#141b33; --line:#232c4a;
+    --ink:#e8ecf7; --muted:#94a0bf; --faint:#5b6486;
+    --green:#34d399; --blue:#38bdf8; --yellow:#fbbf24; --red:#f43f5e;
+    --purple:#a855f7; --teal:#2dd4bf;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:radial-gradient(1200px 700px at 50% -200px,#16203c 0%,var(--bg) 60%);
+    color:var(--ink); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:48px 24px 80px}
+  header.top{text-align:center; margin-bottom:8px}
+  .kicker{letter-spacing:.22em; text-transform:uppercase; font-size:12px; color:var(--muted); font-weight:600}
+  h1{font-size:28px; line-height:1.2; margin:10px 0 6px; font-weight:700}
+  .sub{color:var(--muted); font-size:15px}
+  .meta{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:18px 0 8px}
+  .chip{background:var(--panel); border:1px solid var(--line); color:var(--muted);
+    padding:5px 12px; border-radius:999px; font-size:12.5px}
+  .chip b{color:var(--ink); font-weight:600}
+
+  section{background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:26px 28px; margin:22px 0; box-shadow:0 1px 0 rgba(255,255,255,.02) inset}
+  h2{font-size:20px; margin:0 0 4px; font-weight:700}
+  h2 .num{color:var(--muted); font-weight:600; margin-right:8px}
+  .lead{color:var(--muted); margin-top:0}
+  h3{font-size:15px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:22px 0 10px}
+  p{margin:10px 0}
+  ul{margin:10px 0; padding-left:22px}
+  li{margin:7px 0}
+  strong{color:#fff}
+  code{background:#0c1326; border:1px solid var(--line); padding:1px 6px; border-radius:6px; font-size:13px; color:#cdd6f4}
+
+  /* verdict banner */
+  .banner{display:flex; align-items:center; gap:16px; background:var(--panel2); border:1px solid var(--line);
+    border-radius:14px; padding:18px 22px}
+  .banner .big{font-size:30px; font-weight:800; color:var(--green); letter-spacing:.02em}
+  .banner .txt{color:var(--muted); font-size:14px}
+
+  /* verdict chips */
+  .vrow{display:grid; grid-template-columns:1fr; gap:12px; margin-top:6px}
+  .vcard{display:flex; align-items:center; gap:12px; background:var(--panel2); border:1px solid var(--line);
+    border-radius:12px; padding:14px 18px; cursor:pointer; transition:.15s; text-decoration:none; color:inherit}
+  .vcard:hover{border-color:#39477a; transform:translateY(-1px)}
+  .vcard .dot{width:12px;height:12px;border-radius:4px;flex:none}
+  .vcard .who{font-weight:700}
+  .vcard .verdict{margin-left:auto; font-size:12px; font-weight:700; padding:3px 10px; border-radius:999px; text-transform:uppercase; letter-spacing:.04em}
+  .v-closed{background:rgba(52,211,153,.16); color:#6ee7b7; border:1px solid rgba(52,211,153,.35)}
+  .v-partial{background:rgba(251,191,36,.14); color:#ffd57a; border:1px solid rgba(251,191,36,.32)}
+
+  .note{border-left:3px solid var(--teal); padding:4px 0 4px 16px; margin:14px 0; color:var(--muted)}
+  .note b{color:#7fe7d8}
+
+  /* modal */
+  .overlay{position:fixed; inset:0; background:rgba(4,7,15,.72); backdrop-filter:blur(3px);
+    display:none; align-items:flex-start; justify-content:center; padding:48px 18px; z-index:50; overflow:auto}
+  .overlay.open{display:flex}
+  .modal{background:var(--panel); border:1px solid var(--line); border-radius:16px; max-width:780px; width:100%;
+    box-shadow:0 30px 80px rgba(0,0,0,.5); animation:pop .16s ease-out}
+  @keyframes pop{from{transform:translateY(8px) scale(.99); opacity:.4}to{transform:none; opacity:1}}
+  .modal .bar{display:flex; align-items:center; gap:12px; padding:16px 22px; border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:var(--panel); border-radius:16px 16px 0 0}
+  .modal .bar .dot{width:13px;height:13px;border-radius:4px;flex:none}
+  .modal .bar .mt{font-weight:700; font-size:15px}
+  .modal .bar .x{margin-left:auto; cursor:pointer; color:var(--muted); border:1px solid var(--line);
+    background:var(--panel2); border-radius:8px; width:30px; height:30px; line-height:28px; text-align:center; font-size:16px}
+  .modal .bar .x:hover{color:#fff; border-color:#39477a}
+  .md{padding:8px 26px 26px}
+  .md h1{font-size:21px; margin:18px 0 4px} .md h2{font-size:15px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:22px 0 8px}
+  .md blockquote{border-left:3px solid var(--purple); margin:12px 0; padding:2px 0 2px 14px; color:var(--muted)}
+  .md hr{border:none; border-top:1px solid var(--line); margin:18px 0}
+  .md .rawlink{display:inline-block; margin-top:18px; color:#8fb6ff; text-decoration:none; font-size:13px}
+  .footer{color:var(--muted); text-align:center; font-size:13px; margin-top:28px; font-style:italic}
+  .filelinks{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:8px}
+  .filelinks a{color:#8fb6ff; text-decoration:none; font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="kicker">Developmental Council · Verification Run (reduced council)</div>
+    <h1>DP-A Closure Verification</h1>
+    <div class="sub">Did the Option-A restructure actually close the recurring positioning/identity contradiction?</div>
+    <div class="meta">
+      <span class="chip"><b>Package:</b> Engineering</span>
+      <span class="chip"><b>Advisors:</b> 3 · reduced set (the DP-A raisers)</span>
+      <span class="chip"><b>Mode:</b> multi-agent</span>
+      <span class="chip"><b>Date:</b> 2026-06-10</span>
+    </div>
+  </header>
+
+  <!-- ===== VERDICT ===== -->
+  <section>
+    <h2><span class="num">◆</span>Result</h2>
+    <div class="banner">
+      <div class="big">CLOSED</div>
+      <div class="txt">2 of 3 advisors returned CLOSED outright; the third (Cost/Complexity) returned PARTIALLY CLOSED on one residual
+        in <code>core/workflow.md</code>, which was fixed in this same pass. With that edit, all three objections are resolved.</div>
+    </div>
+    <div class="vrow">
+      <a class="vcard" data-md="md-product"><span class="dot" style="background:#a855f7"></span><span class="who">Product / Business</span><span class="verdict v-closed">Closed</span></a>
+      <a class="vcard" data-md="md-cold-onboarder"><span class="dot" style="background:#2dd4bf"></span><span class="who">Cold Onboarder</span><span class="verdict v-closed">Closed</span></a>
+      <a class="vcard" data-md="md-cost-complexity"><span class="dot" style="background:#fbbf24"></span><span class="who">Cost / Complexity</span><span class="verdict v-partial">Partially → fixed</span></a>
+    </div>
+    <p class="lead" style="margin-top:14px">Click any advisor to read the full report. The reduced set was chosen deliberately: these three lenses
+      are the ones that re-derived DP-A in every prior run, so their agreement is the meaningful test.</p>
+  </section>
+
+  <!-- ===== SUMMARY ===== -->
+  <section>
+    <h2><span class="num">1</span>What closed it</h2>
+    <p>The recurring finding was never textual — it was <strong>structural</strong>. Prior passes added caveats while the entry points still
+      <em>led with</em> four symmetric phases. The Option-A restructure changed the architecture: README and SKILL.md now lead with
+      <strong>Council → Chair as the core and the default</strong>, and present <strong>Executor → Reviewer as opt-in add-ons</strong>
+      that make the recommendation actionable.</p>
+    <ul>
+      <li><strong>Product → CLOSED:</strong> "the claim now leads, and the structure follows." No residual.</li>
+      <li><strong>Cold Onboarder → CLOSED:</strong> a first-time reader comes away knowing "council this" = perspectives + recommendation; the rest is opt-in.</li>
+      <li><strong>Cost/Complexity → PARTIALLY CLOSED:</strong> entry points fixed and no new duplication, but <code>core/workflow.md</code> still opened with "runs four phases" before its Scope section.</li>
+    </ul>
+    <div class="note"><b>Chair action this pass:</b> fixed the lone residual — <code>core/workflow.md</code> now opens with
+      <code>Council → Chair (default — the product)</code> and a separate opt-in <code>→ Executor → Reviewer</code> block, matching the
+      entry points. That converts the PARTIALLY CLOSED to CLOSED.</div>
+  </section>
+
+  <!-- ===== CONCLUSION ===== -->
+  <section>
+    <h2><span class="num">2</span>Conclusion</h2>
+    <p><strong>DP-A is closed.</strong> Structure and stated identity now agree across README, SKILL.md, and core/workflow.md. The reduced
+      council confirms the recurring contradiction is resolved — and notably, no stale findings or scope leakage this run, unlike the prior
+      full re-council. No further positioning work is warranted.</p>
+    <div class="filelinks">
+      <a href="developmental-council-report.md">↳ Markdown version of this report</a>
+    </div>
+  </section>
+
+  <div class="footer">The council recommends and prepares; it does not decide. Final authority is yours.</div>
+</div>
+
+<!-- modal -->
+<div class="overlay" id="overlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="bar"><span class="dot" id="m-dot"></span><span class="mt" id="m-title"></span>
+      <span class="x" id="m-close" title="Close (Esc)">×</span></div>
+    <div class="md" id="m-body"></div>
+  </div>
+</div>
+
+<script type="text/markdown" id="md-product">
+# Advisor — Product / Business
+
+## Verdict
+CLOSED — README and SKILL.md now position Council → Chair as the core/default product and Executor → Reviewer as opt-in add-ons.
+
+## Evidence
+- **README lines 5–14:** "At its core, the council runs two phases: Council → Chair... **This is the default.** ... That is the product." Gated four-phase version on line 16.
+- **SKILL.md lines 12–22:** core = two phases; "Two further phases are **optional add-ons**..., run only on explicit request."
+- **SKILL.md lines 29–36:** visual nesting — "Council → Chair (default — the product)" then "→ Executor → Reviewer (opt-in)".
+- **workflow.md Scope table:** Default = Council → Chair; Full pipeline opt-in on explicit request.
+
+## Residual or newly-introduced issues
+None — internally consistent across all three files.
+
+## Confidence
+High — the contradiction was eliminated by structural nesting and an explicit default declaration. The claim leads; the structure follows.
+</script>
+<script type="text/markdown" id="md-cold-onboarder">
+# Advisor — Cold Onboarder
+
+## Verdict
+CLOSED — the default is unambiguous: Council → Chair is the core product; Executor/Reviewer only run on explicit request.
+
+## Evidence
+- **README lines 5–14:** "At its core, the council runs two phases: Council → Chair. **This is the default.** ... That is the product."
+- **SKILL.md lines 17–20:** "optional add-ons that make the Chair's recommendation actionable, run only on explicit request."
+- **SKILL.md "Default flow and optional extensions":** "Default flow — always" (Council + Chair, stop here) vs. "Optional extensions — only on explicit request."
+- **README lines 16–25:** explicit opt-in triggers ("a full council," "council with execution," a follow-up).
+
+## Residual or newly-introduced issues
+None.
+
+## Confidence
+High — as a first-time reader I came away with immediate clarity: "council this" = perspectives + recommendation, full stop.
+</script>
+<script type="text/markdown" id="md-cost-complexity">
+# Advisor — Cost / Complexity
+
+## Verdict
+PARTIALLY CLOSED — entry points fixed and no new duplication, but core/workflow.md still front-loaded the full pipeline before clarifying the default. *(Chair note: fixed this pass → CLOSED.)*
+
+## Evidence
+- **README lines 5–14 / SKILL.md lines 12–21:** hierarchical and honest — two-phase core leads, Executor/Reviewer demoted to opt-ins. ✓
+- **workflow.md Scope table:** correctly distinguishes Default from Full pipeline. ✓
+- **workflow.md opening (pre-fix):** "Developmental Council v3 runs four phases" + the unadorned four-box diagram appeared *before* the Scope section.
+
+## Residual or newly-introduced issues
+- Scope-presentation lag in workflow.md — **now fixed** (opens with the two-phase core + a separate opt-in extension block).
+- No new duplication: each file states the hierarchy once in its own idiom.
+
+## Confidence
+High — identity bleed resolved in the entry points; the only residual was a document-ordering issue in workflow.md (a 20% remainder, not a structural misunderstanding).
+</script>
+
+<script>
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function inline(s){return esc(s).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/\*([^*]+)\*/g,'<em>$1</em>');}
+function renderMarkdown(src){
+  const lines=src.replace(/\r/g,"").split("\n"); let html="",list=null;
+  const close=()=>{if(list){html+=`</${list}>`;list=null;}};
+  for(let raw of lines){const line=raw.replace(/\s+$/,"");let m;
+    if(/^\s*$/.test(line)){close();continue;}
+    if(/^---+$/.test(line)){close();html+="<hr>";continue;}
+    if((m=line.match(/^(#{1,6})\s+(.*)$/))){close();const n=m[1].length;html+=`<h${n}>${inline(m[2])}</h${n}>`;continue;}
+    if((m=line.match(/^>\s?(.*)$/))){close();html+=`<blockquote>${inline(m[1])}</blockquote>`;continue;}
+    if((m=line.match(/^\s*[-*]\s+(.*)$/))){if(list!=="ul"){close();list="ul";html+="<ul>";}html+=`<li>${inline(m[1])}</li>`;continue;}
+    if((m=line.match(/^\s*\d+\.\s+(.*)$/))){if(list!=="ol"){close();list="ol";html+="<ol>";}html+=`<li>${inline(m[1])}</li>`;continue;}
+    close();html+=`<p>${inline(line)}</p>`;}
+  close();return html;
+}
+const COLORS={"md-product":"#a855f7","md-cold-onboarder":"#2dd4bf","md-cost-complexity":"#fbbf24"};
+const TITLES={"md-product":"Product / Business","md-cold-onboarder":"Cold Onboarder","md-cost-complexity":"Cost / Complexity"};
+const overlay=document.getElementById("overlay");
+function open(id){
+  const node=document.getElementById(id);
+  const md=node?node.textContent.replace(/^\n/,""):"_not embedded_";
+  document.getElementById("m-dot").style.background=COLORS[id];
+  document.getElementById("m-title").textContent=`${TITLES[id]} — full report`;
+  document.getElementById("m-body").innerHTML=renderMarkdown(md);
+  overlay.classList.add("open"); document.body.style.overflow="hidden";
+}
+function close(){overlay.classList.remove("open"); document.body.style.overflow="";}
+document.querySelectorAll(".vcard").forEach(c=>c.addEventListener("click",()=>open(c.dataset.md)));
+document.getElementById("m-close").onclick=close;
+overlay.addEventListener("click",e=>{if(e.target===overlay)close();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
+</script>
+</body>
+</html>

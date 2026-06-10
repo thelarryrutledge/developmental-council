@@ -139,8 +139,8 @@ ln -s /path/to/developmental-council ~/.claude/skills/developmental-council
 
 Two things to know when you do this:
 
-- The skill folder then also exposes `council-reports/` (gitignored run artifacts) and `private/` (gitignored local profiles). That is harmless — the skill never loads `council-reports/`, and `private/` is intentional — but do not store secrets in `private/` expecting the skill folder to hide them.
-- Because `council-reports/` and `private/` are gitignored, a clean `git status` does not mean the skill folder is empty; run artifacts accumulate under `council-reports/`.
+- The skill folder then also exposes `private/` (gitignored local profiles). Do not store secrets there expecting the skill folder to hide them.
+- In *this* repo, `council-reports/` is committed — those runs are real councils of this codebase, kept as worked examples. In *other* projects the skill writes its reports to `council-reports/` too; commit or gitignore them there as you prefer.
 
 ## Trigger phrases
 

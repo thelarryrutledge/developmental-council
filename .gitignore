@@ -1,7 +1,9 @@
-# Council run artifacts
+# Council run artifacts (legacy v2 loose files)
 council-report-*.html
 council-transcript-*.md
-council-reports/
+
+# Note: council-reports/ is intentionally tracked — the runs there are real
+# council reviews of this repo, kept as worked examples.
 
 # Private profiles — kept local, never published
 private/
